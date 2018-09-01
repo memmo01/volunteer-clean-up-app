@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100%;
 }
 
 header {
@@ -30,6 +31,14 @@ nav ul li {
   float: right;
   padding: 15px;
 }
+footer {
+  width: 100%;
+  padding: 40px 0 40px 0;
+  background-color: black;
+  color: white;
+  text-align: center;
+  bottom: 0;
+}
 /* 
 Media query with a smallish min-width breakpoint
 e.g. @media (min-width: 400px)
@@ -40,7 +49,7 @@ e.g. @media (min-width: 600px)
 Media query with a larger still min-width breakpoint
 e.g. @media (min-width: 960px) */
 
-@media (min-width: 480px) {
+@media (min-width: 360px) {
   nav ul li {
     display: inline-flex;
     padding: 5px;
@@ -71,9 +80,13 @@ e.g. @media (min-width: 960px) */
   }
   #how2Volunteer h2 {
     background-color: orange;
+    text-align: center;
   }
   #how2Volunteer {
     background-color: lightsalmon;
+  }
+  .wrapper {
+    padding: 20px 0 20px 0;
   }
   /* #how2Help {
     background-color: lightcoral;
@@ -86,6 +99,52 @@ e.g. @media (min-width: 960px) */
   article ol {
     width: 70%;
     margin-left: 15%;
+  }
+  .joinBox {
+    width: 60%;
+    margin: 20px 0 20px 20%;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .joinBox:active {
+    background-color: grey;
+    color: white;
+  }
+
+  /* #userAction .joinBox:first-child {
+    margin-top: 0;
+  } */
+  #userAction {
+    padding: 20px 0 20px 0;
+    background-color: lavenderblush;
+  }
+  #slideOneTitle {
+    position: absolute;
+    width: 100%;
+    bottom: 80px;
+    color: white;
+    background: rgba(1, 73, 85, 0.7);
+    text-align: center;
+    font-size: 50px;
+  }
+
+  /* form */
+
+  form {
+    padding: 70px 0 70px 0;
+  }
+
+  form input,
+  select {
+    text-align: center;
+    margin: 20px;
+    width: 80%;
+    font-size: 25px;
+    margin-left: 10%;
+    padding: 20px;
+    display: block;
   }
 }
 @media (min-width: 600px) {

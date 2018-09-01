@@ -1,10 +1,11 @@
 import React from "react";
-import imgs from "../blankImg.png";
-import hh from "../icon-javascript.png";
+import imgs from "../commClean.JPG";
+import hh from "../clean.JPG";
 
 class CarouselLanding extends React.Component {
   render() {
     return (
+      // this section pictures need to be added and text in front of the pictures as an advertisment with a theme of helping the community
       <section>
         <div
           id="carouselExampleControls"
@@ -14,6 +15,7 @@ class CarouselLanding extends React.Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img className="d-block w-100" src={imgs} alt="First slide" />
+              <div id="slideOneTitle">Community Cleanup</div>
             </div>
             <div className="carousel-item">
               <img className="d-block w-100" src={hh} alt="Second slide" />
