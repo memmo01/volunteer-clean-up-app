@@ -3,10 +3,10 @@ import React from "react";
 class Header extends React.Component {
   render() {
     return (
-      <nav>
+      <header>
         <i className="fas fa-bars" id="hamSiteDirectory" />
         <div id="logoArea">Clean Community</div>
-        <div className="siteNav">
+        <nav>
           <ul>
             <li>
               <a href="#" alt="home">
@@ -24,11 +24,9 @@ class Header extends React.Component {
               </a>
             </li>
           </ul>
-        </div>
-        <div className="hmm">
-          <i className="fas fa-user one" />
-        </div>
-      </nav>
+        </nav>
+        <i className="fas fa-user logoLogin" />
+      </header>
     );
   }
 }

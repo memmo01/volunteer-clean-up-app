@@ -5,14 +5,14 @@ body {
   width: 100%;
 }
 
-nav {
+header {
   background-color: orange;
   display: inline-flex;
   width: 100%;
 }
 
 #hamSiteDirectory {
-  padding: 10px;
+  padding: 15px;
 }
 nav ul {
   display: none;
@@ -26,9 +26,9 @@ nav ul li {
   display: inline-flex;
   padding: 15px;
 }
-.one {
+.logoLogin {
   float: right;
-  padding: 10px;
+  padding: 15px;
 }
 /* 
 Media query with a smallish min-width breakpoint
@@ -48,6 +48,44 @@ e.g. @media (min-width: 960px) */
   nav ul li a {
     text-decoration: none;
     color: black;
+  }
+  .aboutSect p {
+    margin-bottom: 0;
+  }
+  #about h1 {
+    font-size: 35px;
+    background-color: green;
+  }
+  #about h1,
+  #how2Help h2 {
+    text-align: center;
+  }
+  #about {
+    background-color: lightgreen;
+  }
+  #how2Help h2 {
+    background-color: red;
+  }
+  #how2Help {
+    background-color: lightcoral;
+  }
+  #how2Volunteer h2 {
+    background-color: orange;
+  }
+  #how2Volunteer {
+    background-color: lightsalmon;
+  }
+  /* #how2Help {
+    background-color: lightcoral;
+  } */
+
+  article p {
+    padding: 10px 50px;
+    text-align: left;
+  }
+  article ol {
+    width: 70%;
+    margin-left: 15%;
   }
 }
 @media (min-width: 600px) {
