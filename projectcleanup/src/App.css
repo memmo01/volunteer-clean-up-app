@@ -39,6 +39,140 @@ footer {
   text-align: center;
   bottom: 0;
 }
+nav ul li {
+  display: inline-flex;
+  padding: 5px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+.aboutSect p {
+  margin-bottom: 0;
+}
+#about h1 {
+  font-size: 35px;
+}
+#about h1,
+#how2Help h2,
+#how2Volunteer h2 {
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+#how2Help {
+  background-image: url("./land.jpg");
+  background-position: top center;
+  background-size: cover;
+}
+.siteInstructions ol {
+  font-family: "Montserrat", "Century Gothic", Verdana, sans-serif;
+  color: #ff5533;
+  font-size: 35px;
+  font-weight: 1000;
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+.siteInstructions li {
+  border: 3px solid white;
+  background-color: rgba(246, 246, 233, 0.8);
+  padding: 10px 0 10px 0;
+  border-radius: 20px;
+}
+#how2Volunteer li {
+  background-color: rgba(161, 186, 208, 0.5);
+}
+.siteInstructions li:nth-child(n + 2) {
+  margin-top: 30px;
+}
+.siteInstructions li h4 {
+  color: #ff5533;
+  font-size: 20px;
+  padding: 0 10px 0 10px;
+}
+
+#how2Volunteer {
+  background-image: url("./imge.jpg");
+  background-position: bottom right;
+}
+.wrapper {
+  padding: 20px 0 0 0;
+}
+
+.siteInstructions p {
+  padding: 30px;
+  background-color: rgba(246, 246, 233, 0.8);
+}
+#how2Volunteer p {
+  background-color: rgba(246, 246, 233, 0.6);
+}
+article ol {
+  width: 70%;
+  margin-left: 15%;
+}
+.joinBox {
+  width: 60%;
+  margin: 20px 0 20px 20%;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(235, 237, 236, 0.9);
+  text-align: center;
+}
+.joinBox:hover {
+  background-color: rgba(162, 169, 175, 1);
+}
+.joinBox:active {
+  background-color: grey;
+  color: white;
+}
+
+/* #userAction .joinBox:first-child {
+  margin-top: 0;
+} */
+#userAction {
+  padding: 20px 0 20px 0;
+  background-image: url("./cartoon.png");
+  background-position: bottom center;
+}
+#userAction a {
+  text-decoration: none;
+  color: black;
+}
+#slideOneTitle {
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+  color: white;
+  background: rgba(1, 73, 85, 0.7);
+  text-align: center;
+  font-size: 40px;
+}
+
+/* form */
+
+form {
+  padding: 20px 0 70px 0;
+}
+.formTitle h1 {
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+}
+
+form input,
+select {
+  text-align: center;
+  margin: 20px;
+  width: 80%;
+  font-size: 25px;
+  margin-left: 10%;
+  padding: 20px;
+  display: block;
+}
+form input:focus {
+  background-color: rgba(245, 244, 232, 0.6);
+}
 /* 
 Media query with a smallish min-width breakpoint
 e.g. @media (min-width: 400px)
@@ -49,103 +183,7 @@ e.g. @media (min-width: 600px)
 Media query with a larger still min-width breakpoint
 e.g. @media (min-width: 960px) */
 
-@media (min-width: 360px) {
-  nav ul li {
-    display: inline-flex;
-    padding: 5px;
-  }
-  nav ul li a {
-    text-decoration: none;
-    color: black;
-  }
-  .aboutSect p {
-    margin-bottom: 0;
-  }
-  #about h1 {
-    font-size: 35px;
-    background-color: green;
-  }
-  #about h1,
-  #how2Help h2 {
-    text-align: center;
-  }
-  #about {
-    background-color: lightgreen;
-  }
-  #how2Help h2 {
-    background-color: red;
-  }
-  #how2Help {
-    background-color: lightcoral;
-  }
-  #how2Volunteer h2 {
-    background-color: orange;
-    text-align: center;
-  }
-  #how2Volunteer {
-    background-color: lightsalmon;
-  }
-  .wrapper {
-    padding: 20px 0 20px 0;
-  }
-  /* #how2Help {
-    background-color: lightcoral;
-  } */
-
-  article p {
-    padding: 10px 50px;
-    text-align: left;
-  }
-  article ol {
-    width: 70%;
-    margin-left: 15%;
-  }
-  .joinBox {
-    width: 60%;
-    margin: 20px 0 20px 20%;
-    border: 2px solid blue;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-  }
-  .joinBox:active {
-    background-color: grey;
-    color: white;
-  }
-
-  /* #userAction .joinBox:first-child {
-    margin-top: 0;
-  } */
-  #userAction {
-    padding: 20px 0 20px 0;
-    background-color: lavenderblush;
-  }
-  #slideOneTitle {
-    position: absolute;
-    width: 100%;
-    bottom: 80px;
-    color: white;
-    background: rgba(1, 73, 85, 0.7);
-    text-align: center;
-    font-size: 50px;
-  }
-
-  /* form */
-
-  form {
-    padding: 70px 0 70px 0;
-  }
-
-  form input,
-  select {
-    text-align: center;
-    margin: 20px;
-    width: 80%;
-    font-size: 25px;
-    margin-left: 10%;
-    padding: 20px;
-    display: block;
-  }
+@media (min-width: 480px) {
 }
 @media (min-width: 600px) {
 }

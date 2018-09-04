@@ -7,6 +7,10 @@ class Signup extends React.Component {
   render() {
     return (
       <div>
+        <div className="formTitle">
+          <h1>Create an Account </h1>
+        </div>
+        <hr />
         <SignUpForm />
       </div>
     );
