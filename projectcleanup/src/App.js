@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import CarouselLanding from "./components/CarouselLanding";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import "./App.css";
 
 class App extends Component {
+  componentDidMount() {
+    document.cookie = '{ "visited": "yes" }';
+  }
   render() {
     return (
       <div className="App">
         <main>
           <CarouselLanding />
           <section class="aboutSect">
+            {" "}
             <article id="about">
               <h1>About Community Clean up</h1>
               <div className="wrapper">
@@ -25,7 +29,7 @@ class App extends Component {
               </div>
             </article>
             <article class="siteInstructions" id="how2Help">
-              <h2>How to help and create an event</h2>
+              <h2>Create an event</h2>
               <div className="wrapper">
                 <ol>
                   <li>
@@ -53,7 +57,7 @@ class App extends Component {
               </div>
             </article>
             <article class="siteInstructions" id="how2Volunteer">
-              <h2>How to volunteer for an event</h2>
+              <h2>Volunteer for an event</h2>
               <div className="wrapper">
                 <ol>
                   <li>
@@ -103,6 +107,7 @@ class App extends Component {
             </a>
           </section>
         </main>
+        <Footer />
       </div>
     );
 

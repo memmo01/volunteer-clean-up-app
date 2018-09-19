@@ -12,6 +12,7 @@ class Signup extends React.Component {
         </div>
         <hr />
         <SignUpForm />
+        <Footer />
       </div>
     );
   }

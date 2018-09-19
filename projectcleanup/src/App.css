@@ -4,9 +4,10 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: auto;
 }
 
-header {
+#headerNav {
   background-color: orange;
   display: inline-flex;
   width: 100%;
@@ -15,6 +16,32 @@ header {
 #hamSiteDirectory {
   padding: 15px;
 }
+
+.dropMenu {
+  display: none;
+  display: absolute;
+  height: 900px;
+  width: 100%;
+  background-color: white;
+  color: black;
+}
+.dropMenu li,
+.dropMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
+}
+.dropMenu li {
+  width: 80%;
+  margin-left: 10%;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid black;
+}
+.dropMenu a {
+  text-decoration: none;
+  color: black;
+}
 nav ul {
   display: none;
 }
@@ -22,14 +49,19 @@ nav ul {
   width: 100%;
   text-align: center;
   line-height: 50px;
+  text-decoration: none;
+  color: black;
 }
 nav ul li {
   display: inline-flex;
   padding: 15px;
 }
-.logoLogin {
+#logoLogin {
   float: right;
   padding: 15px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 }
 footer {
   width: 100%;
@@ -37,7 +69,6 @@ footer {
   background-color: black;
   color: white;
   text-align: center;
-  bottom: 0;
 }
 nav ul li {
   display: inline-flex;
@@ -58,6 +89,9 @@ nav ul li a {
 #how2Volunteer h2 {
   text-align: center;
   padding: 20px 0 20px 0;
+}
+#about p {
+  padding: 0 20px 20px 20px;
 }
 #how2Help {
   background-image: url("./land.jpg");
@@ -149,7 +183,7 @@ article ol {
   font-size: 40px;
 }
 
-/* form */
+/* form signup */
 
 form {
   padding: 20px 0 70px 0;
@@ -162,16 +196,37 @@ form {
 
 form input,
 select {
-  text-align: center;
+  text-align: left;
   margin: 20px;
-  width: 80%;
+  width: 90%;
   font-size: 25px;
-  margin-left: 10%;
-  padding: 20px;
+  margin-left: 5%;
   display: block;
 }
 form input:focus {
   background-color: rgba(245, 244, 232, 0.6);
+}
+
+/* form signin */
+.signInContainer {
+  padding: 50px 0 100px 0;
+}
+#signin input {
+  margin: 0 0 10px 5%;
+}
+#signin input[type="submit"] {
+  margin-top: 40px;
+}
+#signin label {
+  margin-left: 5%;
+}
+
+/* form createEvent */
+.eventSectionInfo input {
+  margin: 10px 0 0 0;
+}
+.eventSectionInfo label {
+  margin-left: 5%;
 }
 /* 
 Media query with a smallish min-width breakpoint
