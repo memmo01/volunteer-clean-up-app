@@ -8,7 +8,7 @@ class SignUpForm extends React.Component {
         <input type="text" name="lastName" placeholder="last name" />
         <input type="text" name="city" placeholder="City" />
         <select name="state">
-          <option value="state" selected>
+          <option value="state" defaultValue>
             State
           </option>
           <option value="AL">Alabama</option>

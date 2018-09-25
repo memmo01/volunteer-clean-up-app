@@ -6,7 +6,11 @@ body {
   height: 100%;
   overflow: auto;
 }
+.wrapper {
+  padding: 20px 0 0 0;
+}
 
+/*header component styling*/
 #headerNav {
   background-color: orange;
   display: inline-flex;
@@ -63,13 +67,6 @@ nav ul li {
   color: black;
   cursor: pointer;
 }
-footer {
-  width: 100%;
-  padding: 40px 0 40px 0;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
 nav ul li {
   display: inline-flex;
   padding: 5px;
@@ -78,6 +75,8 @@ nav ul li a {
   text-decoration: none;
   color: black;
 }
+
+/* main app.js component sectino */
 .aboutSect p {
   margin-bottom: 0;
 }
@@ -94,7 +93,7 @@ nav ul li a {
   padding: 0 20px 20px 20px;
 }
 #how2Help {
-  background-image: url("./land.jpg");
+  background-image: url("./images/land.jpg");
   background-position: top center;
   background-size: cover;
 }
@@ -126,11 +125,8 @@ nav ul li a {
 }
 
 #how2Volunteer {
-  background-image: url("./imge.jpg");
+  background-image: url("./images/imge.jpg");
   background-position: bottom right;
-}
-.wrapper {
-  padding: 20px 0 0 0;
 }
 
 .siteInstructions p {
@@ -161,18 +157,17 @@ article ol {
   color: white;
 }
 
-/* #userAction .joinBox:first-child {
-  margin-top: 0;
-} */
 #userAction {
   padding: 20px 0 20px 0;
-  background-image: url("./cartoon.png");
+  background-image: url("./images/cartoon.png");
   background-position: bottom center;
 }
 #userAction a {
   text-decoration: none;
   color: black;
 }
+
+/* carousel component section */
 #slideOneTitle {
   position: absolute;
   width: 100%;
@@ -183,7 +178,16 @@ article ol {
   font-size: 40px;
 }
 
-/* form signup */
+/* footer component section */
+footer {
+  width: 100%;
+  padding: 40px 0 40px 0;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+/* form signup page */
 
 form {
   padding: 20px 0 70px 0;
@@ -207,7 +211,7 @@ form input:focus {
   background-color: rgba(245, 244, 232, 0.6);
 }
 
-/* form signin */
+/* form signin page */
 .signInContainer {
   padding: 50px 0 100px 0;
 }
@@ -227,6 +231,8 @@ form input:focus {
 }
 .eventSectionInfo label {
   margin-left: 5%;
+
+  width: 100%;
 }
 /* 
 Media query with a smallish min-width breakpoint

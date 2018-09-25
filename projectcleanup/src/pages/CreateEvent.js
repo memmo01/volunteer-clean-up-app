@@ -54,12 +54,12 @@ class CreateEvent extends React.Component {
               <input
                 type="text"
                 name="leaderFirstName"
-                placeholder="Leader First Name"
+                placeholder="Group Leader First Name"
               />
               <input
                 type="text"
                 name="leaderLastName"
-                placeholder="Leader Last Name"
+                placeholder="Group Leader Last Name"
               />
               <input type="text" name="groupName" placeholder="Group Name" />
               <input
@@ -70,12 +70,12 @@ class CreateEvent extends React.Component {
               <input
                 type="email"
                 name="leaderEmail"
-                placeholder="Leader Email"
+                placeholder="Group Leader Email"
               />
               <input
                 type="text"
                 name="leaderPhone"
-                placeholder="Leader phone number"
+                placeholder="Group Leader phone number"
               />
             </fieldset>
             <fieldset class="eventSectionInfo">
@@ -109,6 +109,8 @@ class CreateEvent extends React.Component {
                 <input type="text" name="eventZipcode" />
               </label>
             </fieldset>
+
+            <input type="submit" value="Create Event" />
           </form>
         </section>
       </div>

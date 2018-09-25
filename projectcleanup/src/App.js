@@ -6,6 +6,12 @@ import "./App.css";
 
 class App extends Component {
   componentDidMount() {
+    // let y = getCurrentPosition();
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position.coords.latitude + " " + position.coords.longitude);
+    });
+    // console.log(y);
+
     document.cookie = '{ "visited": "yes" }';
   }
   render() {
@@ -13,7 +19,7 @@ class App extends Component {
       <div className="App">
         <main>
           <CarouselLanding />
-          <section class="aboutSect">
+          <section className="aboutSect">
             {" "}
             <article id="about">
               <h1>About Community Clean up</h1>
@@ -28,7 +34,7 @@ class App extends Component {
                 </p>
               </div>
             </article>
-            <article class="siteInstructions" id="how2Help">
+            <article className="siteInstructions" id="how2Help">
               <h2>Create an event</h2>
               <div className="wrapper">
                 <ol>
@@ -56,7 +62,7 @@ class App extends Component {
                 </p>
               </div>
             </article>
-            <article class="siteInstructions" id="how2Volunteer">
+            <article className="siteInstructions" id="how2Volunteer">
               <h2>Volunteer for an event</h2>
               <div className="wrapper">
                 <ol>
@@ -86,15 +92,11 @@ class App extends Component {
           </section>
           <section id="userAction">
             <a href="/signup">
-              <div
-                className="joinBox"
-                id="newUser"
-                onClick="location.href='/signup'"
-              >
+              <div className="joinBox" id="newUser">
                 <h3>Sign up Today!</h3>
               </div>
             </a>
-            <a href="#">
+            <a href="/createevent">
               <div className="joinBox" id="createEvent">
                 <h3>Create an Event!</h3>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import imgs from "../commClean.JPG";
-import hh from "../clean.JPG";
+import imgs from "../images/commClean.JPG";
+import hh from "../images/clean.JPG";
 
 class CarouselLanding extends React.Component {
   render() {
