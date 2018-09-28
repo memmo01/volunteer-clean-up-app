@@ -234,6 +234,16 @@ form input:focus {
 
   width: 100%;
 }
+
+/* CREATE EVENT PAGE
+ */
+
+#createEventHeader {
+  padding: 20px;
+}
+#createEvent {
+  padding: 20px;
+}
 /* 
 Media query with a smallish min-width breakpoint
 e.g. @media (min-width: 400px)
