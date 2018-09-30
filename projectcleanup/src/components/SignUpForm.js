@@ -1,11 +1,62 @@
 import React from "react";
 
 class SignUpForm extends React.Component {
+  //handles submiting form and organizes it into an object sending it to parent component
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(e.target);
+    let personalInfo = {};
+    let confidencialInfo = {};
+    for (var i = 0; i < e.target.length; i++) {
+      console.log(e.target[i].value);
+
+      switch (e.target[i].name) {
+        case "firstName":
+          personalInfo.first_name = e.target[i].value;
+          break;
+        case "lastName":
+          personalInfo.last_name = e.target[i].value;
+          break;
+        case "address":
+          personalInfo.address = e.target[i].value;
+          break;
+        case "city":
+          personalInfo.city = e.target[i].value;
+          break;
+        case "state":
+          personalInfo.state = e.target[i].value;
+          break;
+        case "zip":
+          personalInfo.zipcode = e.target[i].value;
+          break;
+        case "email":
+          personalInfo.email = e.target[i].value;
+          break;
+        case "username":
+          confidencialInfo.username = e.target[i].value;
+          break;
+        case "password":
+          confidencialInfo.password = e.target[i].value;
+          break;
+      }
+
+      // obtain user input information
+      // create a unique id to link personal info and confidential information
+      //send confidencial info to different table
+    }
+
+    this.props.addToDatabase("personalInfo", personalInfo);
+    // this.props.addToDatabase("confidencialInfo", confidencialInfo);
+    console.log(personalInfo);
+    console.log(confidencialInfo);
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input type="text" name="firstName" placeholder="first name" />
         <input type="text" name="lastName" placeholder="last name" />
+        <input type="text" name="address" placeholder="Address" />
         <input type="text" name="city" placeholder="City" />
         <select name="state">
           <option value="state" defaultValue>
@@ -70,6 +121,8 @@ class SignUpForm extends React.Component {
           placeholder="Zip code"
         />
         <input type="email" name="email" placeholder="email" />
+        <input type="username" name="username" placeholder="create username" />
+
         <input type="password" name="password" placeholder="create password" />
 
         <input

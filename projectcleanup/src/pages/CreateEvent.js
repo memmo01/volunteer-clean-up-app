@@ -34,6 +34,10 @@ class CreateEvent extends React.Component {
       checkSignin();
     }
   }
+
+  handleSubmit(e) {
+    //store saved information from form as object and send to database using fetch
+  }
   render() {
     return (
       <div>
@@ -48,7 +52,7 @@ class CreateEvent extends React.Component {
         </header>
 
         <section>
-          <form id="createEvent">
+          <form id="createEvent" onSubmit={this.handleSubmit}>
             <fieldset>
               <legend>Group Information</legend>
               <input

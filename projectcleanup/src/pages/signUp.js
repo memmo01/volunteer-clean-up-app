@@ -4,6 +4,16 @@ import Footer from "../components/Footer";
 import "../App.css";
 
 class Signup extends React.Component {
+  addToDatabase(dbTable, info) {
+    console.log("signup fetch area");
+    fetch(`/api/newInfo/${dbTable}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(info)
+    });
+  }
   render() {
     return (
       <div>
@@ -11,7 +21,7 @@ class Signup extends React.Component {
           <h1>Create an Account </h1>
         </div>
         <hr />
-        <SignUpForm />
+        <SignUpForm addToDatabase={this.addToDatabase.bind(this)} />
         <Footer />
       </div>
     );
