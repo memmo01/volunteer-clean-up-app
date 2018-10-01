@@ -36,6 +36,12 @@ class CreateEvent extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
+    let eventInfo = {};
+    for (var i = 0; i < e.target.length; i++) {
+      console.log(e.target[i].value);
+    }
+
     //store saved information from form as object and send to database using fetch
   }
   render() {
@@ -82,7 +88,7 @@ class CreateEvent extends React.Component {
                 placeholder="Group Leader phone number"
               />
             </fieldset>
-            <fieldset class="eventSectionInfo">
+            <fieldset className="eventSectionInfo">
               <legend>Event Information</legend>
               <label>
                 Start Date
