@@ -1,4 +1,5 @@
 import React from "react";
+let uuidv4 = require("uuid/v4");
 
 class SignUpForm extends React.Component {
   //handles submiting form and organizes it into an object sending it to parent component
@@ -40,13 +41,17 @@ class SignUpForm extends React.Component {
           break;
       }
 
+      let uuid = uuidv4();
+      personalInfo.uuid = uuid;
+      confidencialInfo.uuid = uuid;
+
       // obtain user input information
       // create a unique id to link personal info and confidential information
       //send confidencial info to different table
     }
 
     this.props.addToDatabase("personalInfo", personalInfo);
-    // this.props.addToDatabase("confidencialInfo", confidencialInfo);
+    this.props.addToDatabase("confidencialInfo", confidencialInfo);
     console.log(personalInfo);
     console.log(confidencialInfo);
   };

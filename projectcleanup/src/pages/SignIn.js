@@ -8,7 +8,7 @@ class Signin extends React.Component {
       let info = JSON.parse(document.cookie);
       alert("signed in");
     } else {
-      alert("need to sign in");
+      alert("you need to sign in");
     }
   }
 
@@ -30,9 +30,9 @@ class Signin extends React.Component {
         return data;
       })
       .then(function(data) {
-        let datauu = data.uuid;
-        let dataid = data.one;
-
+        let datauu = data.newUuid;
+        let dataid = data.originUuid;
+        console.log(data);
         let info = {
           id: dataid,
           uuid: datauu

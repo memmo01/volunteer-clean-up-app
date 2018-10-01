@@ -14,8 +14,8 @@ module.exports = app => {
       })
       .then(results => {
         let o = {
-          one: results[0].dataValues.user_id,
-          uuid: uuidv4()
+          originUuid: results[0].dataValues.uuid,
+          newUuid: uuidv4()
         };
 
         res.json(o);
@@ -24,6 +24,8 @@ module.exports = app => {
 
   // testing retrieving info from LOGINCREDENTIALS DB
   app.get("/api/userfind/:id?", (req, res) => {
+    console.log(req.params.id);
+    console.log(")))))))))))");
     db.users
       .findAll({
         where: {
@@ -31,7 +33,9 @@ module.exports = app => {
         }
       })
       .then(results => {
-        res.json(results[0].dataValues);
+        console.log(results[0].dataValues);
+        res.json(JSON.stringify(results[0]));
+        console.log(JSON.stringify(results[0]));
       });
   });
 
@@ -52,7 +56,7 @@ module.exports = app => {
   //finding user with an id and adding a unique identifier to the database
   app.post("/api/updateCred", function(req, res) {
     let obj = JSON.parse(req.body);
-    let idNum = parseInt(obj.id);
+    let idNum = obj.id;
     let uuidNum = obj.uuid;
 
     db.users
@@ -62,10 +66,25 @@ module.exports = app => {
         },
         {
           where: {
-            id: idNum
+            uuid: idNum
           }
         }
       )
+      .then(function(results) {
+        res.json(results);
+      })
+      .then(function(req, res) {
+        db.logincreds.update(
+          {
+            uuid: uuidNum
+          },
+          {
+            where: {
+              uuid: idNum
+            }
+          }
+        );
+      })
       .then(function(results) {
         res.json(results);
       });
@@ -74,6 +93,17 @@ module.exports = app => {
   //add to addEvent database
   app.post("/api/newInfo/addEvent", function(req, res) {
     db.events.create(req.body).then(results => {
+      res.json(results);
+    });
+  });
+  app.post("/api/newInfo/personalInfo", function(req, res) {
+    db.users.create(req.body).then(results => {
+      res.json(results);
+    });
+  });
+
+  app.post("/api/newInfo/confidencialInfo", function(req, res) {
+    db.logincreds.create(req.body).then(results => {
       res.json(results);
     });
   });

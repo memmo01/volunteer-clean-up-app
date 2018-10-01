@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn";
 import Signup from "./pages/signUp";
 import Header from "./components/Header";
 import DropDown from "./components/dropDown";
+import Userpage from "./pages/UserMain";
 // import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/createevent" component={CreateEvent} />
+        <Route exact path="/userlogged" component={Userpage} />
       </Switch>
     </div>
   </Router>,
