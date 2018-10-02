@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       zip: DataTypes.INTEGER,
       start_time: DataTypes.STRING,
       end_time: DataTypes.STRING,
-      creator_id: DataTypes.STRING
+      creator: DataTypes.STRING,
+      user_id: DataTypes.STRING
     },
     {
       timestamps: false

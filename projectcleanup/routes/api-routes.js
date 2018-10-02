@@ -25,7 +25,6 @@ module.exports = app => {
   // testing retrieving info from LOGINCREDENTIALS DB
   app.get("/api/userfind/:id?", (req, res) => {
     console.log(req.params.id);
-    console.log(")))))))))))");
     db.users
       .findAll({
         where: {
@@ -33,7 +32,6 @@ module.exports = app => {
         }
       })
       .then(results => {
-        console.log(results[0].dataValues);
         res.json(JSON.stringify(results[0]));
         console.log(JSON.stringify(results[0]));
       });
@@ -46,11 +44,17 @@ module.exports = app => {
     });
   });
 
-  //add the personalInfo database
-  app.post("/api/login", function(req, res) {
-    // db.users.create(req.body).then(results => {
-    //   res.json(results);
-    // });
+  app.get("/api/attendingEvents/:userId?", (req, res) => {
+    console.log(req.params.userId);
+    db.events
+      .findAll({
+        where: {
+          user_id: req.params.userId
+        }
+      })
+      .then(results => {
+        res.json(JSON.stringify(results[0]));
+      });
   });
 
   //finding user with an id and adding a unique identifier to the database
@@ -101,7 +105,12 @@ module.exports = app => {
       res.json(results);
     });
   });
-
+  //add the personalInfo database
+  app.post("/api/login", function(req, res) {
+    // db.users.create(req.body).then(results => {
+    //   res.json(results);
+    // });
+  });
   app.post("/api/newInfo/confidencialInfo", function(req, res) {
     db.logincreds.create(req.body).then(results => {
       res.json(results);

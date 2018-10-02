@@ -14,6 +14,7 @@ class App extends Component {
 
     document.cookie = '{ "visited": "yes" }';
   }
+
   render() {
     return (
       <div className="App">
