@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import CreateEvent from "./pages/CreateEvent";
+import EventList from "./pages/EventList";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/signUp";
 import Header from "./components/Header";
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/createevent" component={CreateEvent} />
+        <Route exact path="/eventlist" component={EventList} />
         <Route exact path="/userlogged" component={Userpage} />
       </Switch>
     </div>

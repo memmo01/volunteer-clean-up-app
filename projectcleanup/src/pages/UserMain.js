@@ -1,17 +1,24 @@
 import React from "react";
-
+import $ from "jquery";
+import EventSort from "../components/Eventsort";
 class Userpage extends React.Component {
   constructor() {
     super();
     this.state = {
       events: [],
-      personalInfo: []
+      personalInfo: [],
+      show: false
     };
   }
   componentDidMount() {
     if (document.cookie) {
+      let x = JSON.parse(document.cookie);
+
+      console.log(document.cookie);
       let user = JSON.parse(document.cookie);
       this.loaduser(user);
+    } else {
+      window.location.href = "/";
     }
   }
 
@@ -27,6 +34,7 @@ class Userpage extends React.Component {
         return results.json();
       })
       .then(data => {
+        console.log("passed ajax");
         let arr = [];
         let info = JSON.parse(data);
         // returns user id and updates personalInformation state
@@ -38,10 +46,14 @@ class Userpage extends React.Component {
         return arr;
       })
       .then(function(arr) {
+        // grabs 'this' for array and turns it into self variable to fix scope issue accessing outside functions
         let self = arr[0];
         // uses user id to query event table and find events the user has signed up for
         fetch(`/api/attendingEvents/${arr[1]}`)
           .then(function(results) {
+            console.log("here");
+            console.log(results);
+
             return results.json();
           })
           .then(data => {
@@ -49,8 +61,10 @@ class Userpage extends React.Component {
             console.log(data);
 
             let eventInfo = JSON.parse(data);
+
+            console.log(eventInfo[0]);
             //sends to function to update event state
-            self.updateInfo(eventInfo);
+            self.updateEventInfo(eventInfo);
           });
       });
   };
@@ -66,18 +80,25 @@ class Userpage extends React.Component {
   };
 
   // update event state
-  updateInfo = info => {
+  updateEventInfo = info => {
     this.setState({
       events: info
     });
-    console.log(info);
+    console.log(info[0]);
+    console.log("9999");
   };
 
   render() {
+    let individualEvent;
+    individualEvent = this.state.events.map((obj, index) => {
+      return <EventSort event={obj} key={index} />;
+    });
+    console.log(Array.isArray(this.state.events));
     return (
       <div>
-        {this.state.personalInfo.id}
-        <h1>{this.state.events.address}</h1>
+        <h1>Welcome {this.state.personalInfo.first_name}</h1>
+        <h3>Here is a list of your upcoming events:</h3>
+        {individualEvent}
       </div>
     );
   }

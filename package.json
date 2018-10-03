@@ -23,6 +23,7 @@
   "dependencies": {
     "concurrently": "^4.0.1",
     "express": "^4.16.3",
+    "jquery": "^3.3.1",
     "mysql2": "^1.6.1",
     "sequelize": "^4.39.0"
   },

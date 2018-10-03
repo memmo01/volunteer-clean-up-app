@@ -7,12 +7,12 @@ import "./App.css";
 class App extends Component {
   componentDidMount() {
     // let y = getCurrentPosition();
-    navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position.coords.latitude + " " + position.coords.longitude);
-    });
-    // console.log(y);
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   console.log(position.coords.latitude + " " + position.coords.longitude);
+    // });
+    // // console.log(y);
 
-    document.cookie = '{ "visited": "yes" }';
+    // document.cookie = '{ "visited": "yes" }';
   }
 
   render() {

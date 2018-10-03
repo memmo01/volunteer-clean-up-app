@@ -53,7 +53,7 @@ module.exports = app => {
         }
       })
       .then(results => {
-        res.json(JSON.stringify(results[0]));
+        res.json(JSON.stringify(results));
       });
   });
 

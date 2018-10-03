@@ -2,23 +2,45 @@
 //can also search by inputing location manually
 
 import React from "react";
-import EventSorter from "../components/EventSort"
+import Eventsort from "../components/Eventsort";
 
 class EventList extends React.Component {
-    constructor(){
-        super()
-        this.state={
-            events=[]
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      events: []
+    };
+  }
 
-    componentDidMount(){
-        // this will query the database for events listed in the city the user is located in based on information listed in the database. the information will update the state.events
-    
-    }
+  componentDidMount() {
+    let self = this;
+    // this will query the database for events listed in the city the user is located in based on information listed in the database. the information will update the state.events
+    fetch("/api/events")
+      .then(function(results) {
+        console.log(results);
+        return results.json();
+      })
+      .then(function(data) {
+        console.log(data);
+        self.handleChange(data);
+      });
+    // this.handleChange();
+  }
+
+  handleChange = data => {
+    console.log("change");
+    this.setState({
+      events: data
+    });
+  };
   render() {
+    let ev;
+    ev = this.state.events.map((obj, index) => {
+      return <Eventsort event={obj} key={index} />;
+    });
     return (
       <div>
+        {ev}
         <nav>
           <ul>
             <li>
@@ -31,10 +53,10 @@ class EventList extends React.Component {
         </nav>
 
         <main>
-            <section id="eventList">
+          <section id="eventList">
             {/* this section will list out events occuring in individual card boxes */}
-            <EventSorter events={this.state.events}/>
-            </section>
+            {/* <EventSort events={this.state.events} /> */}
+          </section>
         </main>
       </div>
     );

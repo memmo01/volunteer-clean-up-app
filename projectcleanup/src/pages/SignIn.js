@@ -7,6 +7,7 @@ class Signin extends React.Component {
     if (document.cookie) {
       let info = JSON.parse(document.cookie);
       alert("signed in");
+      console.log(info);
     } else {
       alert("you need to sign in");
     }
@@ -62,6 +63,7 @@ class Signin extends React.Component {
                 let cookie = document.cookie;
                 let checkCookie = JSON.parse(cookie);
                 console.log(checkCookie.user);
+                window.location.href = "/userlogged";
               });
           });
       });
