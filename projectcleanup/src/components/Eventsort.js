@@ -3,10 +3,10 @@ import moment from "moment";
 
 class EventSort extends React.Component {
   render() {
-    let dateFormated = moment(this.props.event.start_date).format(
-      "MMM D, YYYY"
+    let dateFormated = moment("" + this.props.event.start_date + "").format(
+      "MMM DD, YYYY"
     );
-    console.log(this.props);
+    console.log(this.props.event.start_date);
     return (
       <div>
         <div className="card">

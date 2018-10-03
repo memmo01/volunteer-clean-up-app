@@ -23,6 +23,7 @@ class CreateEvent extends React.Component {
       })
       .then(function(x) {
         let userReference = JSON.parse(x);
+        console.log(x);
         self.updateState(userReference.id);
       });
   };
@@ -43,6 +44,10 @@ class CreateEvent extends React.Component {
     if (logged === "false") {
       alert("you must log in");
       window.location.href = "/signin";
+    } else {
+      let userId = document.cookie.split("=");
+      console.log(userId);
+      this.updateUser(userId[1]);
     }
   }
   // ----------------------------------------------
