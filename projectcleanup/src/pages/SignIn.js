@@ -3,14 +3,14 @@ import React from "react";
 class Signin extends React.Component {
   // if signin is correct then send location information to localstorage
 
-  componentDidMount() {
-    if (document.cookie) {
-      let info = JSON.parse(document.cookie);
-      console.log(info);
-    } else {
-      alert("you need to sign in");
-    }
-  }
+  // componentDidMount() {
+  //   if (document.cookie) {
+  //     let info = JSON.parse(document.cookie);
+  //     console.log(info);
+  //   } else {
+  //     alert("you need to sign in");
+  //   }
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -38,9 +38,9 @@ class Signin extends React.Component {
           uuid: datauu
         };
         // console.log(typeof data);
-        document.cookie = JSON.stringify({ user: datauu });
+        document.cookie = "user=" + datauu + "";
         sessionStorage.setItem("logged", "true");
-
+        console.log(document.cookie);
         //send new data to database and find id number while adding a new reference number
 
         fetch(`/api/updateCred/`, {
@@ -62,10 +62,11 @@ class Signin extends React.Component {
               })
               .then(function(data) {
                 console.log("cookies!");
+
+                console.log("pppppp");
+
+                document.cookie = "user=" + datauu + "";
                 console.log(document.cookie);
-                let cookie = document.cookie;
-                let checkCookie = JSON.parse(cookie);
-                console.log(checkCookie.user);
                 window.location.href = "/userlogged";
               });
           });

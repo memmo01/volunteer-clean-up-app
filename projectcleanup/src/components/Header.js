@@ -1,6 +1,42 @@
 import React from "react";
 
 class Header extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showIcon: false
+    };
+  }
+
+  //state is controlled to help with displaying specific icon
+  componentDidMount = () => {
+    let path = window.location.pathname;
+    if (
+      path === "/" ||
+      path === "/signup" ||
+      path === "/signin" ||
+      path === "/about"
+    ) {
+      if (sessionStorage) {
+        console.log(sessionStorage);
+        let logged = sessionStorage.getItem("logged");
+
+        if (logged === "false") {
+          this.setState({
+            showIcon: false
+          });
+        } else {
+          this.setState({
+            showIcon: true
+          });
+        }
+      }
+    } else {
+      this.setState({
+        showIcon: true
+      });
+    }
+  };
   handleClick = () => {
     let elem = document.getElementsByClassName("dropMenu");
     let check = elem[0].getAttribute("data-show");
@@ -21,6 +57,14 @@ class Header extends React.Component {
           break;
       }
     }
+  };
+
+  handleLogOut = e => {
+    e.preventDefault();
+    alert("you are logged out");
+    document.cookie = "user=null";
+    sessionStorage.setItem("logged", "false");
+    window.location.href = "/";
   };
   render() {
     return (
@@ -53,7 +97,15 @@ class Header extends React.Component {
           </ul>
         </nav>
         <a href="/signin" id="logoLogin">
-          <i className="fas fa-user" />
+          {this.state.showIcon === true ? (
+            <i
+              id="icon"
+              onClick={this.handleLogOut}
+              className="fas fa-sign-out-alt"
+            />
+          ) : (
+            <i id="icon" className="fas fa-user" />
+          )}
         </a>
       </header>
     );

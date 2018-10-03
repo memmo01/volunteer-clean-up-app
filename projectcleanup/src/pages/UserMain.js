@@ -1,5 +1,4 @@
 import React from "react";
-import $ from "jquery";
 import EventSort from "../components/Eventsort";
 class Userpage extends React.Component {
   constructor() {
@@ -14,12 +13,11 @@ class Userpage extends React.Component {
     let logged = sessionStorage.getItem("logged");
     if (logged === "true") {
       if (document.cookie) {
-        let x = JSON.parse(document.cookie);
+        let x = document.cookie.split("=");
         //if user has logged in then look for cookie and get identification tag.
         // run id tag through the loaduser function
-        console.log(document.cookie);
-        let user = JSON.parse(document.cookie);
-        this.loaduser(user);
+
+        this.loaduser(x[1]);
       } else {
         window.location.href = "/";
       }
@@ -32,11 +30,8 @@ class Userpage extends React.Component {
   //   takes info from cookie and grabs users info on database to dispay on screen to make it personalized
   //will loop information through another component to make it structured in an organized way
   loaduser = user => {
-    console.log("working");
-    console.log(user.user);
-
     // /find user based on cookie id num
-    fetch(`/api/userfind/${user.user}`)
+    fetch(`/api/userfind/${user}`)
       .then(function(results) {
         return results.json();
       })
@@ -57,15 +52,9 @@ class Userpage extends React.Component {
         // uses user id to query event table and find events the user has signed up for
         fetch(`/api/attendingEvents/${arr[1]}`)
           .then(function(results) {
-            console.log("here");
-            console.log(results);
-
             return results.json();
           })
           .then(data => {
-            console.log("data");
-            console.log(data);
-
             let eventInfo = JSON.parse(data);
 
             console.log(eventInfo[0]);
@@ -90,8 +79,6 @@ class Userpage extends React.Component {
     this.setState({
       events: info
     });
-    console.log(info[0]);
-    console.log("9999");
   };
 
   render() {

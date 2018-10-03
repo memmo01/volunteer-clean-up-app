@@ -92,7 +92,7 @@ class CreateEvent extends React.Component {
     }
 
     //loop through radio choice and save in object
-    for (var i = 0; i < radio.length; i++) {
+    for (let i = 0; i < radio.length; i++) {
       if (radio[i].checked) {
         eventInfo.contact = radio[i].value;
         break;

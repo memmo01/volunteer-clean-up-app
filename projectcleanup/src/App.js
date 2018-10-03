@@ -11,7 +11,6 @@ class App extends Component {
     //   console.log(position.coords.latitude + " " + position.coords.longitude);
     // });
     // // console.log(y);
-
     // document.cookie = '{ "visited": "yes" }';
   }
 
@@ -97,7 +96,7 @@ class App extends Component {
                 <h3>Sign up Today!</h3>
               </div>
             </a>
-            <a href="/createevent">
+            {/* <a href="/createevent">
               <div className="joinBox" id="createEvent">
                 <h3>Create an Event!</h3>
               </div>
@@ -107,7 +106,7 @@ class App extends Component {
               <div className="joinBox" id="joinEvent">
                 <h3>Join an Event!</h3>
               </div>
-            </a>
+            </a> */}
           </section>
         </main>
         <Footer />

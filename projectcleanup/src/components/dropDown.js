@@ -24,7 +24,8 @@ class dropDown extends React.Component {
   handleLogout = e => {
     e.preventDefault();
     alert("you are logged out");
-    let da = sessionStorage.setItem("logged", "false");
+    document.cookie = "user=null";
+    sessionStorage.setItem("logged", "false");
     window.location.href = "/";
 
     this.setState({
