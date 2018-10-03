@@ -11,14 +11,20 @@ class Userpage extends React.Component {
     };
   }
   componentDidMount() {
-    if (document.cookie) {
-      let x = JSON.parse(document.cookie);
-      //if user has logged in then look for cookie and get identification tag.
-      // run id tag through the loaduser function
-      console.log(document.cookie);
-      let user = JSON.parse(document.cookie);
-      this.loaduser(user);
+    let logged = sessionStorage.getItem("logged");
+    if (logged === "true") {
+      if (document.cookie) {
+        let x = JSON.parse(document.cookie);
+        //if user has logged in then look for cookie and get identification tag.
+        // run id tag through the loaduser function
+        console.log(document.cookie);
+        let user = JSON.parse(document.cookie);
+        this.loaduser(user);
+      } else {
+        window.location.href = "/";
+      }
     } else {
+      alert("you need to log in");
       window.location.href = "/";
     }
   }

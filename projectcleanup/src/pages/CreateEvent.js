@@ -34,23 +34,15 @@ class CreateEvent extends React.Component {
 
   componentDidMount() {
     //checking if signed in ------------------------------
-    function checkSignin() {
-      alert("You must be signed in to create an event");
-      window.location.href = "/signin";
-    }
+
     //--------------------------------------------------------
 
     //check cookies and get user information --------------
-    if (document.cookie) {
-      let cookie = document.cookie;
-      let info = JSON.parse(cookie);
-      console.log(info);
-      if (info.user) {
-        console.log("true");
-        this.updateUser(info.user);
-      }
-    } else {
-      checkSignin();
+
+    let logged = sessionStorage.getItem("logged");
+    if (logged === "false") {
+      alert("you must log in");
+      window.location.href = "/signin";
     }
   }
   // ----------------------------------------------
@@ -156,10 +148,9 @@ class CreateEvent extends React.Component {
                 name="volunteerNum"
                 placeholder="Number of volunteers needed"
               />
+              <h5>Volunteers can contact me by:</h5>
 
               <label id="radioSection">
-                Volunteers can contact me by:
-                <br />
                 <label className="rad">
                   <input type="radio" name="contact" value="email" /> Listed
                   Email

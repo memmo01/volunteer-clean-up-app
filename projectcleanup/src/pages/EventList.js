@@ -13,6 +13,11 @@ class EventList extends React.Component {
   }
 
   componentDidMount() {
+    let logged = sessionStorage.getItem("logged");
+    if (logged === "false") {
+      alert("you must log in");
+      window.location.href = "/signin";
+    }
     let self = this;
     // this will query the database for events listed in the city the user is located in based on information listed in the database. the information will update the state.events
     fetch("/api/events")

@@ -6,7 +6,6 @@ class Signin extends React.Component {
   componentDidMount() {
     if (document.cookie) {
       let info = JSON.parse(document.cookie);
-      alert("signed in");
       console.log(info);
     } else {
       alert("you need to sign in");
@@ -40,6 +39,8 @@ class Signin extends React.Component {
         };
         // console.log(typeof data);
         document.cookie = JSON.stringify({ user: datauu });
+        sessionStorage.setItem("logged", "true");
+
         //send new data to database and find id number while adding a new reference number
 
         fetch(`/api/updateCred/`, {

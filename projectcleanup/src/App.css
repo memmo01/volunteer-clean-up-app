@@ -245,13 +245,15 @@ form input:focus {
   padding: 20px;
 }
 #radioSection {
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .rad {
   display: inline-block;
   text-align: center;
   width: 33.33%;
+  flex: 1;
 }
 
 /* 
