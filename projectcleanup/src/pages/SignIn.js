@@ -33,7 +33,7 @@ class Signin extends React.Component {
       .then(function(data) {
         let datauu = data.newUuid;
         let dataid = data.originUuid;
-        console.log(data);
+
         let info = {
           id: dataid,
           uuid: datauu
@@ -52,8 +52,10 @@ class Signin extends React.Component {
             // things to do
             // create a route to take the id and the uuid value and place it into the database
           })
-          .then(function(data) {
-            fetch(`/api/userfind/${data}`)
+          .then(function(datauu) {
+            console.log(typeof datauu);
+            console.log("typeof");
+            fetch(`/api/userfind/${datauu}`)
               .then(function(results) {
                 return results.json();
               })

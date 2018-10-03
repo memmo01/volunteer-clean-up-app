@@ -96,10 +96,13 @@ module.exports = app => {
 
   //add to addEvent database
   app.post("/api/newInfo/addEvent", function(req, res) {
+    console.log("PPPPPP");
+    console.log(req.body);
     db.events.create(req.body).then(results => {
       res.json(results);
     });
   });
+
   app.post("/api/newInfo/personalInfo", function(req, res) {
     db.users.create(req.body).then(results => {
       res.json(results);

@@ -36,7 +36,7 @@ class EventList extends React.Component {
   render() {
     let ev;
     ev = this.state.events.map((obj, index) => {
-      return <Eventsort event={obj} key={index} />;
+      return <Eventsort event={obj} key={index} join={"true"} />;
     });
     return (
       <div>

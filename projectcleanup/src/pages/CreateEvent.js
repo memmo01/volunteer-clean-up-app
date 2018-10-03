@@ -1,49 +1,127 @@
 import React from "react";
+import "../App.css";
+import moment from "moment";
 
+//when submitting an event it will grab the user information based on cookies logged in
+// 1.query the database to get user id
+// 2.add user id to event info
+// 3.if creator the select yes for database
 class CreateEvent extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: []
+      userRef: []
     };
   }
-  updateUser(i) {
+
+  updateUser = i => {
+    let self = this;
+
+    fetch(`/api/userfind/${i}`)
+      .then(function(results) {
+        return results.json();
+      })
+      .then(function(x) {
+        let userReference = JSON.parse(x);
+        self.updateState(userReference.id);
+      });
+  };
+  updateState = id => {
     this.setState({
-      name: i.visited
+      userRef: id
     });
-  }
+  };
 
   componentDidMount() {
+    //checking if signed in ------------------------------
     function checkSignin() {
       alert("You must be signed in to create an event");
       window.location.href = "/signin";
     }
+    //--------------------------------------------------------
 
+    //check cookies and get user information --------------
     if (document.cookie) {
       let cookie = document.cookie;
       let info = JSON.parse(cookie);
-      switch (info.visited) {
-        case "yes":
-          this.updateUser(info);
-          break;
-        case "no":
-          checkSignin();
-          break;
+      console.log(info);
+      if (info.user) {
+        console.log("true");
+        this.updateUser(info.user);
       }
     } else {
       checkSignin();
     }
   }
+  // ----------------------------------------------
 
-  handleSubmit(e) {
+  // handing submit of form------------------------
+  handleSubmit = e => {
     e.preventDefault();
     let eventInfo = {};
-    for (var i = 0; i < e.target.length; i++) {
-      console.log(e.target[i].value);
+
+    let radio = document.getElementsByName("contact");
+
+    for (var i = 1; i < e.target.length; i++) {
+      switch (e.target[i].name) {
+        case "volunteerNum":
+          eventInfo.volunteers_needed = e.target[i].value;
+          break;
+        case "groupName":
+          eventInfo.group_name = e.target[i].value;
+          break;
+
+        case "startDate":
+          eventInfo.start_date = moment(e.target[i].value).format("YYYYMMDD");
+          break;
+        case "startTime":
+          eventInfo.start_time = e.target[i].value;
+          break;
+        case "endTime":
+          eventInfo.end_time = e.target[i].value;
+          break;
+        case "eventAddress":
+          eventInfo.address = e.target[i].value;
+          break;
+        case "eventCity":
+          eventInfo.city = e.target[i].value;
+          break;
+        case "eventState":
+          eventInfo.state = e.target[i].value;
+          break;
+        case "eventZipcode":
+          eventInfo.zip = e.target[i].value;
+          break;
+        default:
+          continue;
+      }
+      eventInfo.creator = "true";
+      eventInfo.user_id = this.state.userRef;
     }
 
-    //store saved information from form as object and send to database using fetch
-  }
+    //loop through radio choice and save in object
+    for (var i = 0; i < radio.length; i++) {
+      if (radio[i].checked) {
+        eventInfo.contact = radio[i].value;
+        break;
+      } else {
+        continue;
+      }
+    }
+    console.log(eventInfo);
+
+    //send data to the event database
+    fetch("/api/newInfo/addEvent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(eventInfo)
+    });
+  };
+
+  //form ends--------------------------------------------------------
+
   render() {
     return (
       <div>
@@ -58,10 +136,11 @@ class CreateEvent extends React.Component {
         </header>
 
         <section>
+          {this.state.name}
           <form id="createEvent" onSubmit={this.handleSubmit}>
             <fieldset>
               <legend>Group Information</legend>
-              <input
+              {/* <input
                 type="text"
                 name="leaderFirstName"
                 placeholder="Group Leader First Name"
@@ -70,14 +149,30 @@ class CreateEvent extends React.Component {
                 type="text"
                 name="leaderLastName"
                 placeholder="Group Leader Last Name"
-              />
+              /> */}
               <input type="text" name="groupName" placeholder="Group Name" />
               <input
                 type="number"
                 name="volunteerNum"
                 placeholder="Number of volunteers needed"
               />
-              <input
+
+              <label id="radioSection">
+                Volunteers can contact me by:
+                <br />
+                <label className="rad">
+                  <input type="radio" name="contact" value="email" /> Listed
+                  Email
+                </label>
+                <label className="rad">
+                  <input type="radio" name="contact" value="phone" /> Listed
+                  Phone
+                </label>
+                <label className="rad">
+                  <input type="radio" name="contact" value="emailphone" /> Both
+                </label>
+              </label>
+              {/* <input
                 type="email"
                 name="leaderEmail"
                 placeholder="Group Leader Email"
@@ -86,7 +181,7 @@ class CreateEvent extends React.Component {
                 type="text"
                 name="leaderPhone"
                 placeholder="Group Leader phone number"
-              />
+              /> */}
             </fieldset>
             <fieldset className="eventSectionInfo">
               <legend>Event Information</legend>
@@ -100,7 +195,7 @@ class CreateEvent extends React.Component {
               </label>
               <label>
                 End Time
-                <input type="time" name="EndTime" />
+                <input type="time" name="endTime" />
               </label>
               <label>
                 Address

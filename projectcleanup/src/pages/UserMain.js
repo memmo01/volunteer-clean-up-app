@@ -13,7 +13,8 @@ class Userpage extends React.Component {
   componentDidMount() {
     if (document.cookie) {
       let x = JSON.parse(document.cookie);
-
+      //if user has logged in then look for cookie and get identification tag.
+      // run id tag through the loaduser function
       console.log(document.cookie);
       let user = JSON.parse(document.cookie);
       this.loaduser(user);
@@ -34,7 +35,6 @@ class Userpage extends React.Component {
         return results.json();
       })
       .then(data => {
-        console.log("passed ajax");
         let arr = [];
         let info = JSON.parse(data);
         // returns user id and updates personalInformation state

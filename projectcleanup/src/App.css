@@ -244,6 +244,16 @@ form input:focus {
 #createEvent {
   padding: 20px;
 }
+#radioSection {
+  width: 90%;
+  margin-left: 5%;
+}
+.rad {
+  display: inline-block;
+  text-align: center;
+  width: 33.33%;
+}
+
 /* 
 Media query with a smallish min-width breakpoint
 e.g. @media (min-width: 400px)

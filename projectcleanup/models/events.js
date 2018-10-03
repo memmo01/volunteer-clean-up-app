@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       start_time: DataTypes.STRING,
       end_time: DataTypes.STRING,
       creator: DataTypes.STRING,
-      user_id: DataTypes.STRING
+      user_id: DataTypes.STRING,
+      contact: DataTypes.STRING,
+      start_date: DataTypes.INTEGER
     },
     {
       timestamps: false

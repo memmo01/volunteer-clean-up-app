@@ -12,7 +12,9 @@ class dropDown extends React.Component {
             <a href="/createevent">
               <li>Create Event</li>
             </a>
-            <li>Join Event</li>
+            <a href="/eventlist">
+              <li>Join Event</li>
+            </a>
             <li>About us</li>
           </ul>
         </div>
