@@ -118,7 +118,13 @@ class CreateEvent extends React.Component {
   };
 
   //form ends--------------------------------------------------------
-
+  handleLocationClick = e => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(function(location) {
+      console.log(location.coords.latitude);
+      console.log(location.coords.longitude);
+    });
+  };
   render() {
     return (
       <div>
@@ -193,6 +199,10 @@ class CreateEvent extends React.Component {
                 End Time
                 <input type="time" name="endTime" />
               </label>
+              <legend>Location</legend>
+              <button onClick={this.handleLocationClick}>
+                Use Current Location
+              </button>
               <label>
                 Address
                 <input type="text" name="eventAddress" />

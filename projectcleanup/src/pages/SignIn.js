@@ -40,6 +40,7 @@ class Signin extends React.Component {
         // console.log(typeof data);
         document.cookie = "user=" + datauu + "";
         sessionStorage.setItem("logged", "true");
+
         console.log(document.cookie);
         //send new data to database and find id number while adding a new reference number
 

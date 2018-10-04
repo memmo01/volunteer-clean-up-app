@@ -10,30 +10,15 @@ class Header extends React.Component {
 
   //state is controlled to help with displaying specific icon
   componentDidMount = () => {
-    let path = window.location.pathname;
-    if (
-      path === "/" ||
-      path === "/signup" ||
-      path === "/signin" ||
-      path === "/about"
-    ) {
-      if (sessionStorage) {
-        console.log(sessionStorage);
-        let logged = sessionStorage.getItem("logged");
-
-        if (logged === "false") {
-          this.setState({
-            showIcon: false
-          });
-        } else {
-          this.setState({
-            showIcon: true
-          });
-        }
-      }
-    } else {
+    let logged = sessionStorage.getItem("logged");
+    if (logged === "true") {
+      console.log(sessionStorage);
       this.setState({
         showIcon: true
+      });
+    } else {
+      this.setState({
+        showIcon: false
       });
     }
   };

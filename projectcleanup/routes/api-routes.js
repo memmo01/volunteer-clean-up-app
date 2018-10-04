@@ -57,6 +57,32 @@ module.exports = app => {
       });
   });
 
+  app.get("/api/joinedEvents/:groupId?", (req, res) => {
+    console.log(req.params.groupId);
+    db.events
+      .findAll({
+        where: {
+          id: req.params.groupId
+        }
+      })
+      .then(results => {
+        res.json(results);
+      });
+  });
+
+  app.get("/api/signedUpEvents/:userId?", (req, res) => {
+    console.log(req.params.userId);
+    db.signed_up_events
+      .findAll({
+        where: {
+          user_id: req.params.userId
+        }
+      })
+      .then(results => {
+        res.json(JSON.stringify(results));
+      });
+  });
+
   //finding user with an id and adding a unique identifier to the database
   app.post("/api/updateCred", function(req, res) {
     let obj = JSON.parse(req.body);
@@ -113,6 +139,12 @@ module.exports = app => {
     // db.users.create(req.body).then(results => {
     //   res.json(results);
     // });
+  });
+
+  app.post("/api/signed_up_events", function(req, res) {
+    db.signed_up_events.create(req.body).then(results => {
+      res.json(results);
+    });
   });
   app.post("/api/newInfo/confidencialInfo", function(req, res) {
     db.logincreds.create(req.body).then(results => {

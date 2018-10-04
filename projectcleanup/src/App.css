@@ -256,6 +256,37 @@ form input:focus {
   flex: 1;
 }
 
+/* //EVENT SORT */
+
+.card {
+  width: 90%;
+  margin-left: 5%;
+  margin: 10px auto;
+}
+.cardTitle {
+  padding: 0 10px 0 10px;
+  border-bottom: 1px solid black;
+}
+.cardBody {
+  padding: 10px;
+}
+.leftCardBody {
+  width: 60%;
+  float: left;
+  padding: 10px;
+}
+.rightCardBody {
+  width: 39%;
+  float: left;
+  padding: 10px;
+  text-align: right;
+}
+.rightCardBody li {
+  list-style-type: none;
+}
+/* .rightCardBody .leftCardBody {
+  display: inline-block;
+} */
 /* 
 Media query with a smallish min-width breakpoint
 e.g. @media (min-width: 400px)

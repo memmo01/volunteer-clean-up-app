@@ -38,10 +38,30 @@ class EventList extends React.Component {
       events: data
     });
   };
+
+  handleStateUpdate = id => {
+    //updates state and eliminates choices from event list
+    console.log(id);
+    let newEvents = this.state.events.filter(obj => {
+      if (obj.id != id) {
+        return obj;
+      }
+    });
+    this.setState({
+      events: newEvents
+    });
+  };
   render() {
     let ev;
     ev = this.state.events.map((obj, index) => {
-      return <Eventsort event={obj} key={index} join={"true"} />;
+      return (
+        <Eventsort
+          event={obj}
+          key={index}
+          removeItem={this.handleStateUpdate}
+          join={"true"}
+        />
+      );
     });
     return (
       <div>

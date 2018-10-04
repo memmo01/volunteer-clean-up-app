@@ -4,8 +4,9 @@ class Userpage extends React.Component {
   constructor() {
     super();
     this.state = {
-      events: [],
+      eventsLeading: [],
       personalInfo: [],
+      joinedEvents: [],
       show: false
     };
   }
@@ -31,6 +32,9 @@ class Userpage extends React.Component {
   //will loop information through another component to make it structured in an organized way
   loaduser = user => {
     // /find user based on cookie id num
+    let self = this;
+    let u;
+    let arrs = ["ap"];
     fetch(`/api/userfind/${user}`)
       .then(function(results) {
         return results.json();
@@ -38,17 +42,17 @@ class Userpage extends React.Component {
       .then(data => {
         let arr = [];
         let info = JSON.parse(data);
+
         // returns user id and updates personalInformation state
         let userId = this.updatePersonalInfo(info);
 
         arr.push(this);
         arr.push(userId);
+        u = userId;
 
         return arr;
       })
       .then(function(arr) {
-        // grabs 'this' for array and turns it into self variable to fix scope issue accessing outside functions
-        let self = arr[0];
         // uses user id to query event table and find events the user has signed up for
         fetch(`/api/attendingEvents/${arr[1]}`)
           .then(function(results) {
@@ -57,16 +61,47 @@ class Userpage extends React.Component {
           .then(data => {
             let eventInfo = JSON.parse(data);
 
-            console.log(eventInfo[0]);
             //sends to function to update event state
             self.updateEventInfo(eventInfo);
+          });
+      })
+      .then(function() {
+        fetch(`/api/signedUpEvents/${u}`)
+          .then(function(results) {
+            return results.json();
+          })
+          .then(function(results) {
+            let eventAttend = JSON.parse(results);
+            //go to events table with the group id
+
+            for (let i = 0; i < eventAttend.length; i++) {
+              self.sortAttendInfo(eventAttend[i]);
+            }
           });
       });
   };
 
+  sortAttendInfo = eventAttend => {
+    let self = this;
+    fetch(`/api/joinedEvents/${eventAttend.group_id}`)
+      .then(function(results) {
+        return results.json();
+      })
+      .then(function(results) {
+        self.eventStateUpdate(results[0]);
+      });
+  };
+
+  eventStateUpdate = results => {
+    let y = this.state.joinedEvents;
+    y[y.length] = results;
+    this.setState({
+      joinedEvents: y
+    });
+  };
+
   //update personal state
   updatePersonalInfo = info => {
-    console.log(info);
     this.setState({
       personalInfo: info
     });
@@ -77,20 +112,26 @@ class Userpage extends React.Component {
   // update event state
   updateEventInfo = info => {
     this.setState({
-      events: info
+      eventsLeading: info
     });
   };
 
   render() {
     let individualEvent;
-    individualEvent = this.state.events.map((obj, index) => {
+    let joinedEvent;
+    joinedEvent = this.state.joinedEvents.map((obj, index) => {
       return <EventSort event={obj} key={index} />;
     });
-    console.log(Array.isArray(this.state.events));
+    individualEvent = this.state.eventsLeading.map((obj, index) => {
+      return <EventSort event={obj} key={index} />;
+    });
+
     return (
       <div>
         <h1>Welcome {this.state.personalInfo.first_name}</h1>
-        <h3>Here is a list of your upcoming events:</h3>
+        <h3>Here are events you have joined:</h3>
+        {joinedEvent}
+        <h3>Here is a list of events you are Leading:</h3>
         {individualEvent}
       </div>
     );

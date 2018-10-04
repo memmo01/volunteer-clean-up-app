@@ -12,6 +12,8 @@ class App extends Component {
     // });
     // // console.log(y);
     // document.cookie = '{ "visited": "yes" }';
+    console.log(document.cookie);
+    console.log(sessionStorage.getItem("logged"));
   }
 
   render() {
