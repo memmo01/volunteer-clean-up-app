@@ -7,7 +7,8 @@ class Userpage extends React.Component {
       eventsLeading: [],
       personalInfo: [],
       joinedEvents: [],
-      show: false
+      one: false,
+      two: false
     };
   }
   componentDidMount() {
@@ -99,9 +100,28 @@ class Userpage extends React.Component {
       joinedEvents: y
     });
   };
+  handleShowEvent = k => {
+    console.log(k);
+    if (k == "PP") {
+      this.setState({
+        one: !this.state.one
+      });
+    } else if (k == "MMM") {
+      this.setState({
+        two: !this.state.two
+      });
+    }
+  };
 
   //update personal state
   updatePersonalInfo = info => {
+    let location = {
+      state: info.state,
+      city: info.city,
+      zip: info.zipcode
+    };
+    location = JSON.stringify(location);
+    sessionStorage.setItem("location", location);
     this.setState({
       personalInfo: info
     });
@@ -128,11 +148,69 @@ class Userpage extends React.Component {
 
     return (
       <div>
-        <h1>Welcome {this.state.personalInfo.first_name}</h1>
-        <h3>Here are events you have joined:</h3>
-        {joinedEvent}
-        <h3>Here is a list of events you are Leading:</h3>
-        {individualEvent}
+        <header>
+          <div className="welcomeArea">
+            <h2>Welcome {this.state.personalInfo.first_name}</h2>
+            <p>
+              Thank you for choosing to help clean up the community. Every time
+              you participate you are helping to create a cleaner environment
+              for future generations
+            </p>
+          </div>
+        </header>
+        <hr />
+        <section>
+          <div id="actionBoxContainer">
+            <a href="#" className="actionBox">
+              View Stats
+            </a>
+            <a href="/eventlist" className="actionBox">
+              Find Event
+            </a>
+            <a href="/createevent" className="actionBox">
+              Create Event
+            </a>
+          </div>
+        </section>
+        <section className="eventList">
+          <div
+            className="showEventList"
+            onClick={this.handleShowEvent.bind(this, "PP")}
+          >
+            <h5>
+              You have {this.state.joinedEvents.length + " "}
+              upcoming Events
+            </h5>
+
+            {this.state.one ? (
+              <div>
+                <i class="fas fa-sort-up" />
+                <div className="eventCards">{joinedEvent}</div>
+              </div>
+            ) : (
+              <i class="fas fa-sort-down" />
+            )}
+          </div>
+        </section>
+        <section className="eventList">
+          <div
+            className="showEventList"
+            onClick={this.handleShowEvent.bind(this, "MMM")}
+          >
+            <h5>
+              You are Leading {this.state.eventsLeading.length + " "} upcoming
+              event
+            </h5>
+            {this.state.two ? (
+              <div>
+                <i class="fas fa-sort-up" />
+                <div className="eventCards">{individualEvent}</div>
+              </div>
+            ) : (
+              <i class="fas fa-sort-down" />
+            )}
+          </div>
+        </section>
       </div>
     );
   }

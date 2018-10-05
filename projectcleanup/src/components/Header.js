@@ -53,45 +53,49 @@ class Header extends React.Component {
   };
   render() {
     return (
-      <header id="headerNav">
-        <i
-          className="fas fa-bars"
-          id="hamSiteDirectory"
-          onClick={this.handleClick}
-        />
-        <a href="/" id="logoArea">
-          <div>Clean Community</div>
-        </a>
-        <nav>
-          <ul>
-            <li>
-              <a href="#" alt="home">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" alt="create volunteer group">
-                create a group
-              </a>
-            </li>
-            <li>
-              <a href="#" alt="join a volunteer group">
-                join a clean up group
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <a href="/signin" id="logoLogin">
-          {this.state.showIcon === true ? (
-            <i
-              id="icon"
-              onClick={this.handleLogOut}
-              className="fas fa-sign-out-alt"
-            />
-          ) : (
-            <i id="icon" className="fas fa-user" />
-          )}
-        </a>
+      <header>
+        <div id="headerNav">
+          <i
+            className="fas fa-bars"
+            id="hamSiteDirectory"
+            onClick={this.handleClick}
+          />
+          <div className="logoArea">
+            <a href="/" id="logoArea">
+              Clean Community
+            </a>
+          </div>
+          <nav>
+            <ul>
+              <li>
+                <a href="#" alt="home">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" alt="create volunteer group">
+                  create a group
+                </a>
+              </li>
+              <li>
+                <a href="#" alt="join a volunteer group">
+                  join a clean up group
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <a href="/signin" id="logoLogin">
+            {this.state.showIcon === true ? (
+              <i
+                id="icon"
+                onClick={this.handleLogOut}
+                className="fas fa-sign-out-alt"
+              />
+            ) : (
+              <i id="icon" className="fas fa-user" />
+            )}
+          </a>
+        </div>
       </header>
     );
   }

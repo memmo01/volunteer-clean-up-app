@@ -70,12 +70,27 @@ module.exports = app => {
       });
   });
 
+  //finding info on user id
   app.get("/api/signedUpEvents/:userId?", (req, res) => {
     console.log(req.params.userId);
     db.signed_up_events
       .findAll({
         where: {
           user_id: req.params.userId
+        }
+      })
+      .then(results => {
+        res.json(JSON.stringify(results));
+      });
+  });
+
+  //finding info on eventid
+  app.get("/api/signedUpGroupEvents/:groupId?", (req, res) => {
+    console.log(req.params.userId);
+    db.signed_up_events
+      .findAll({
+        where: {
+          group_id: req.params.groupId
         }
       })
       .then(results => {

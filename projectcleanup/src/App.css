@@ -11,14 +11,30 @@ body {
 }
 
 /*header component styling*/
+
+header nav {
+  float: right;
+  margin: auto;
+  display: none;
+}
+nav ul {
+  margin: auto;
+}
 #headerNav {
   background-color: orange;
   display: inline-flex;
   width: 100%;
+  text-align: center;
+}
+
+.logoArea {
+  width: 60%;
+  margin: auto;
 }
 
 #hamSiteDirectory {
-  padding: 15px;
+  float: left;
+  margin: auto;
 }
 
 .dropMenu {
@@ -50,11 +66,11 @@ nav ul {
   display: none;
 }
 #logoArea {
-  width: 100%;
   text-align: center;
   line-height: 50px;
   text-decoration: none;
   color: black;
+  margin: auto;
 }
 nav ul li {
   display: inline-flex;
@@ -62,7 +78,7 @@ nav ul li {
 }
 #logoLogin {
   float: right;
-  padding: 15px;
+  margin: auto;
   text-decoration: none;
   color: black;
   cursor: pointer;
@@ -257,11 +273,20 @@ form input:focus {
 }
 
 /* //EVENT SORT */
-
+.eventList {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 30px 0 30px 0;
+}
 .card {
   width: 90%;
-  margin-left: 5%;
-  margin: 10px auto;
+  margin: 20px auto;
+
+  box-shadow: 1px 1px 3px #888888;
 }
 .cardTitle {
   padding: 0 10px 0 10px;
@@ -273,16 +298,69 @@ form input:focus {
 .leftCardBody {
   width: 60%;
   float: left;
-  padding: 10px;
+  padding: 2px;
 }
 .rightCardBody {
   width: 39%;
   float: left;
-  padding: 10px;
+  padding: 2px;
   text-align: right;
 }
 .rightCardBody li {
   list-style-type: none;
+}
+
+/* usermainpage */
+hr {
+  width: 80%;
+}
+#actionBoxContainer {
+  width: 100%;
+  padding: 30px 0 30px 0;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+
+  align-self: center;
+}
+.actionBox {
+  border: 1px solid rgba(6, 6, 8, 0.3);
+  height: 100px;
+  width: 30%;
+  padding-top: 30px;
+  box-shadow: 1px 1px 3px #888888;
+}
+#actionBoxContainer a {
+  text-decoration: none;
+  /* text-decoration-color: black; */
+  color: black;
+}
+.welcomeArea {
+  padding: 20px;
+}
+.showEventList {
+  width: 90%;
+  margin: auto;
+  border: 1px solid rgba(6, 6, 8, 0.1);
+  box-shadow: 1px 1px 3px #888888;
+  text-align: left;
+  background-color: rgba(6, 6, 8, 0.1);
+  padding: 15px;
+}
+.showEventList h5 {
+  text-align: center;
+}
+.showEventList i {
+  margin-top: 0;
+  text-align: center;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+.eventCards {
+  width: 100%;
 }
 /* .rightCardBody .leftCardBody {
   display: inline-block;
@@ -305,5 +383,13 @@ e.g. @media (min-width: 960px) */
 @media (min-width: 960px) {
   nav ul {
     display: block;
+  }
+  header nav {
+    display: inline-block;
+  }
+  .signInContainer {
+    padding: 50px 0 100px 0;
+    width: 33%;
+    margin-left: 33%;
   }
 }

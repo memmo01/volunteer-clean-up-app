@@ -4,7 +4,35 @@ import moment from "moment";
 class EventSort extends React.Component {
   constructor() {
     super();
+    //create state to hold how many poeple signed up for the event
+    this.state = {
+      attending: []
+    };
   }
+
+  componentDidMount = () => {
+    let eventId = this.props.event.id;
+    console.log("EVENTID");
+    console.log(typeof eventId);
+    this.checkAttending(eventId);
+  };
+
+  checkAttending = eventId => {
+    let self = this;
+    console.log("HEYOOOO");
+    fetch(`/api/signedUpGroupEvents/${eventId}`)
+      .then(function(results) {
+        return results.json();
+      })
+      .then(function(results) {
+        let attendingArr = JSON.parse(results);
+        console.log("2323232");
+        console.log(attendingArr.length);
+        self.setState({
+          attending: attendingArr.length
+        });
+      });
+  };
   handleButton = groupId => {
     //get id of the volunteer group
     //get user_id from cookie
@@ -49,34 +77,31 @@ class EventSort extends React.Component {
     console.log(this.props.event.start_date);
     console.log(this.props.event.id);
     return (
-      <div>
-        <div className="card">
-          <div className="cardTitle">
-            <h3>{this.props.event.group_name}</h3>
+      <div className="card">
+        <div className="cardTitle">
+          <h4>{this.props.event.group_name}</h4>
+        </div>
+        <div className="cardBody">
+          <div className="leftCardBody">
+            {dateFormated}
+            <h6>
+              {this.props.event.start_time}-{this.props.event.end_time}
+            </h6>
+            Location:
+            <h6>{this.props.event.address}</h6>
+            <h6>
+              {this.props.event.city}, {this.props.event.state}
+            </h6>
+            {this.props.join === "true" ? (
+              <button
+                onClick={this.handleButton.bind(this, this.props.event.id)}
+              >
+                click to join
+              </button>
+            ) : null}
           </div>
-          <div className="cardBody">
-            <div className="leftCardBody">
-              <h4>{dateFormated}</h4>
-
-              <h6>
-                {this.props.event.start_time}-{this.props.event.end_time}
-              </h6>
-              <h5>Location:</h5>
-              <h6>{this.props.event.address}</h6>
-              <h6>
-                {this.props.event.city}, {this.props.event.state}
-              </h6>
-              {this.props.join === "true" ? (
-                <button
-                  onClick={this.handleButton.bind(this, this.props.event.id)}
-                >
-                  click to join
-                </button>
-              ) : null}
-            </div>
-            <div className="rightCardBody">
-              <li>Attending: 1</li>
-            </div>
+          <div className="rightCardBody">
+            <li>Attending: {this.state.attending}</li>
           </div>
         </div>
       </div>

@@ -63,28 +63,7 @@ class EventList extends React.Component {
         />
       );
     });
-    return (
-      <div>
-        {ev}
-        <nav>
-          <ul>
-            <li>
-              <a href="#">change location</a>
-            </li>
-            <li>
-              <a href="#" />
-            </li>
-          </ul>
-        </nav>
-
-        <main>
-          <section id="eventList">
-            {/* this section will list out events occuring in individual card boxes */}
-            {/* <EventSort events={this.state.events} /> */}
-          </section>
-        </main>
-      </div>
-    );
+    return <section className="eventList">{ev}</section>;
   }
 }
 export default EventList;

@@ -115,6 +115,7 @@ class CreateEvent extends React.Component {
       },
       body: JSON.stringify(eventInfo)
     });
+    window.location.href = "/userlogged";
   };
 
   //form ends--------------------------------------------------------
@@ -123,7 +124,15 @@ class CreateEvent extends React.Component {
     navigator.geolocation.getCurrentPosition(function(location) {
       console.log(location.coords.latitude);
       console.log(location.coords.longitude);
+      let lat = location.coords.latitude;
+      let long = location.coords.longitude;
+      //send to function that will query the coordinates and split back an address
+      this.getAddress(lat, long);
     });
+  };
+
+  getAddress = (lat, long) => {
+    //google api for address search based on long and lat
   };
   render() {
     return (
