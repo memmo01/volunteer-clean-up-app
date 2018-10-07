@@ -12,7 +12,6 @@ class Header extends React.Component {
   componentDidMount = () => {
     let logged = sessionStorage.getItem("logged");
     if (logged === "true") {
-      console.log(sessionStorage);
       this.setState({
         showIcon: true
       });
@@ -47,7 +46,9 @@ class Header extends React.Component {
   handleLogOut = e => {
     e.preventDefault();
     alert("you are logged out");
+
     document.cookie = "user=null";
+    sessionStorage.clear();
     sessionStorage.setItem("logged", "false");
     window.location.href = "/";
   };

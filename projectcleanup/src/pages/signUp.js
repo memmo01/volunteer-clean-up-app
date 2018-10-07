@@ -5,7 +5,6 @@ import "../App.css";
 
 class Signup extends React.Component {
   addToDatabase(dbTable, info) {
-    console.log("signup fetch area");
     fetch(`/api/newInfo/${dbTable}`, {
       method: "POST",
       headers: {

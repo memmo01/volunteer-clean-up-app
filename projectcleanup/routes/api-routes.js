@@ -24,7 +24,6 @@ module.exports = app => {
 
   // testing retrieving info from LOGINCREDENTIALS DB
   app.get("/api/userfind/:id?", (req, res) => {
-    console.log(req.params.id);
     db.users
       .findAll({
         where: {
@@ -33,7 +32,6 @@ module.exports = app => {
       })
       .then(results => {
         res.json(JSON.stringify(results[0]));
-        console.log(JSON.stringify(results[0]));
       });
   });
 
@@ -45,7 +43,6 @@ module.exports = app => {
   });
 
   app.get("/api/attendingEvents/:userId?", (req, res) => {
-    console.log(req.params.userId);
     db.events
       .findAll({
         where: {
@@ -72,7 +69,6 @@ module.exports = app => {
 
   //finding info on user id
   app.get("/api/signedUpEvents/:userId?", (req, res) => {
-    console.log(req.params.userId);
     db.signed_up_events
       .findAll({
         where: {
@@ -137,8 +133,6 @@ module.exports = app => {
 
   //add to addEvent database
   app.post("/api/newInfo/addEvent", function(req, res) {
-    console.log("PPPPPP");
-    console.log(req.body);
     db.events.create(req.body).then(results => {
       res.json(results);
     });

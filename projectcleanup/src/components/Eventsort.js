@@ -12,22 +12,17 @@ class EventSort extends React.Component {
 
   componentDidMount = () => {
     let eventId = this.props.event.id;
-    console.log("EVENTID");
-    console.log(typeof eventId);
     this.checkAttending(eventId);
   };
 
   checkAttending = eventId => {
     let self = this;
-    console.log("HEYOOOO");
     fetch(`/api/signedUpGroupEvents/${eventId}`)
       .then(function(results) {
         return results.json();
       })
       .then(function(results) {
         let attendingArr = JSON.parse(results);
-        console.log("2323232");
-        console.log(attendingArr.length);
         self.setState({
           attending: attendingArr.length
         });
@@ -40,7 +35,16 @@ class EventSort extends React.Component {
     //combine user id, group id, and add to group table
     let cookie = document.cookie;
     let user = cookie.split("=");
+    this.updateSession(groupId);
     this.transferData(user[1], groupId);
+  };
+  updateSession = groupId => {
+    let joinedEvents = JSON.parse(sessionStorage.getItem("joined"));
+    if (joinedEvents != null) {
+      let o = [...joinedEvents, groupId];
+      o = JSON.stringify(o);
+      sessionStorage.setItem("joined", o);
+    }
   };
 
   transferData = (user, group) => {
@@ -59,7 +63,6 @@ class EventSort extends React.Component {
           user_id: user,
           group_id: group
         };
-        console.log(info);
         fetch("/api/signed_up_events", {
           method: "POST",
           headers: {
@@ -74,8 +77,6 @@ class EventSort extends React.Component {
     let dateFormated = moment("" + this.props.event.start_date + "").format(
       "MMM DD, YYYY"
     );
-    console.log(this.props.event.start_date);
-    console.log(this.props.event.id);
     return (
       <div className="card">
         <div className="cardTitle">

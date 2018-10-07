@@ -37,11 +37,9 @@ class Signin extends React.Component {
           id: dataid,
           uuid: datauu
         };
-        // console.log(typeof data);
         document.cookie = "user=" + datauu + "";
         sessionStorage.setItem("logged", "true");
 
-        console.log(document.cookie);
         //send new data to database and find id number while adding a new reference number
 
         fetch(`/api/updateCred/`, {
@@ -55,19 +53,12 @@ class Signin extends React.Component {
             // create a route to take the id and the uuid value and place it into the database
           })
           .then(function(datauu) {
-            console.log(typeof datauu);
-            console.log("typeof");
             fetch(`/api/userfind/${datauu}`)
               .then(function(results) {
                 return results.json();
               })
               .then(function(data) {
-                console.log("cookies!");
-
-                console.log("pppppp");
-
                 document.cookie = "user=" + datauu + "";
-                console.log(document.cookie);
                 window.location.href = "/userlogged";
               });
           });

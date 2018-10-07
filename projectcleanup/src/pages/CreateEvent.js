@@ -21,9 +21,8 @@ class CreateEvent extends React.Component {
       .then(function(results) {
         return results.json();
       })
-      .then(function(x) {
-        let userReference = JSON.parse(x);
-        console.log(x);
+      .then(function(refId) {
+        let userReference = JSON.parse(refId);
         self.updateState(userReference.id);
       });
   };
@@ -46,7 +45,6 @@ class CreateEvent extends React.Component {
       window.location.href = "/signin";
     } else {
       let userId = document.cookie.split("=");
-      console.log(userId);
       this.updateUser(userId[1]);
     }
   }
@@ -114,8 +112,9 @@ class CreateEvent extends React.Component {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify(eventInfo)
+    }).then(function() {
+      window.location.href = "/userlogged";
     });
-    window.location.href = "/userlogged";
   };
 
   //form ends--------------------------------------------------------

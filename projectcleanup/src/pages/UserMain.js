@@ -35,7 +35,9 @@ class Userpage extends React.Component {
     // /find user based on cookie id num
     let self = this;
     let u;
-    let arrs = ["ap"];
+
+    //1.query database with users unique id to get user information.
+    // 2. parse data and send to updatePersonInfo function to update state
     fetch(`/api/userfind/${user}`)
       .then(function(results) {
         return results.json();
@@ -67,6 +69,7 @@ class Userpage extends React.Component {
           });
       })
       .then(function() {
+        // find events that have the id of the user attached to it
         fetch(`/api/signedUpEvents/${u}`)
           .then(function(results) {
             return results.json();
@@ -84,6 +87,7 @@ class Userpage extends React.Component {
 
   sortAttendInfo = eventAttend => {
     let self = this;
+    // get the events that match with the user id and then send to eventStateUpdate function to place info into the sate
     fetch(`/api/joinedEvents/${eventAttend.group_id}`)
       .then(function(results) {
         return results.json();
@@ -96,12 +100,16 @@ class Userpage extends React.Component {
   eventStateUpdate = results => {
     let y = this.state.joinedEvents;
     y[y.length] = results;
+    // updating state with the group events informaiton
     this.setState({
       joinedEvents: y
     });
+
+    // update the sessionStorage with an array of numbers that identify the volunteer groups the user is apart of
+    this.updateSessionStorage("joined", y);
   };
+
   handleShowEvent = k => {
-    console.log(k);
     if (k == "PP") {
       this.setState({
         one: !this.state.one
@@ -114,6 +122,9 @@ class Userpage extends React.Component {
   };
 
   //update personal state
+  // 1. get location info and turn into string
+  // 2.set session storage to that location to help when searching for groups to join
+  // 3.take personal information and update the state with info
   updatePersonalInfo = info => {
     let location = {
       state: info.state,
@@ -134,11 +145,33 @@ class Userpage extends React.Component {
     this.setState({
       eventsLeading: info
     });
+    this.updateSessionStorage("leading", info);
+  };
+
+  //take information about if the user is a leader of volunteer groups or has joined many volunteer groups.
+  // 1.takes type (leading or joined)
+  // 2. take array of items from group and return array of id's
+  // 3.turn array into string
+  // 4.move id numbers to session storage to use (either as joined or leading)
+  updateSessionStorage = (type, eventInfo) => {
+    let y = eventInfo.map(item => {
+      return item.id;
+    });
+    y = JSON.stringify(y);
+
+    if (type === "leading") {
+      sessionStorage.setItem("leading", "[]");
+      sessionStorage.setItem("leading", y);
+    } else if (type === "joined") {
+      sessionStorage.setItem("joined", "[]");
+      sessionStorage.setItem("joined", y);
+    }
   };
 
   render() {
     let individualEvent;
     let joinedEvent;
+    //loop through leading events and joined events and display them onto the page as separate groups
     joinedEvent = this.state.joinedEvents.map((obj, index) => {
       return <EventSort event={obj} key={index} />;
     });
@@ -188,7 +221,7 @@ class Userpage extends React.Component {
                 <div className="eventCards">{joinedEvent}</div>
               </div>
             ) : (
-              <i class="fas fa-sort-down" />
+              <i className="fas fa-sort-down" />
             )}
           </div>
         </section>
