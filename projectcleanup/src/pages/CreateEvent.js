@@ -118,7 +118,10 @@ class CreateEvent extends React.Component {
   };
 
   //form ends--------------------------------------------------------
+
+  //with the users permission this grabs the lat and long of the users location and fetches an API response that provides an address close to those coordinates
   handleLocationClick = e => {
+    let self = this;
     e.preventDefault();
     navigator.geolocation.getCurrentPosition(function(location) {
       console.log(location.coords.latitude);
@@ -126,13 +129,59 @@ class CreateEvent extends React.Component {
       let lat = location.coords.latitude;
       let long = location.coords.longitude;
       //send to function that will query the coordinates and split back an address
-      this.getAddress(lat, long);
+      fetch(
+        "http://nominatim.openstreetmap.org/reverse?format=json&lat=" +
+          lat +
+          "&lon=" +
+          long +
+          "&zoom=18&addressdetails=1",
+        {
+          method: "GET"
+        }
+      )
+        .then(function(results) {
+          return results.json();
+        })
+        .then(function(results) {
+          //splits the response into an array so the information is easy to use
+          let addressArray = results.display_name.split(",");
+          let information = {
+            address: addressArray[0] + addressArray[1],
+            city: addressArray[2],
+            state: addressArray[4],
+            zip: addressArray[5]
+          };
+
+          //send information object to a function that gets the inputs and places these values as the input values
+
+          self.changeInputValues(information);
+        });
     });
   };
 
-  getAddress = (lat, long) => {
-    //google api for address search based on long and lat
+  //function takes information gathered from location API and places it into the input boxes as values
+  changeInputValues = locationInfo => {
+    //grabs the form and all inputs. if the inputs match what is being searched then a value is placed in the box
+    let Inputs = document.getElementById("createEvent");
+
+    for (let i = 0; i < Inputs.length; i++) {
+      switch (Inputs[i].name) {
+        case "eventAddress":
+          Inputs[i].value = locationInfo.address;
+          break;
+        case "eventCity":
+          Inputs[i].value = locationInfo.city;
+          break;
+        case "eventState":
+          Inputs[i].value = locationInfo.state;
+          break;
+        case "eventZipcode":
+          Inputs[i].value = locationInfo.zip;
+          break;
+      }
+    }
   };
+
   render() {
     return (
       <div>
