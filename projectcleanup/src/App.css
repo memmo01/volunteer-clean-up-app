@@ -36,6 +36,9 @@ nav ul {
   float: left;
   margin: auto;
 }
+#hamSiteDirectory:hover {
+  cursor: pointer;
+}
 
 .dropMenu {
   display: none;
@@ -348,6 +351,9 @@ hr {
   text-align: left;
   background-color: rgba(6, 6, 8, 0.1);
   padding: 15px;
+}
+.showEventList {
+  cursor: pointer;
 }
 .showEventList h5 {
   text-align: center;

@@ -69,7 +69,7 @@ class EventList extends React.Component {
     //updates state and eliminates choices from event list after user clicks on event
 
     let newEvents = this.state.events.filter(obj => {
-      if (obj.id != id) {
+      if (obj.id !== id) {
         return obj;
       }
     });

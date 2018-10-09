@@ -73,10 +73,26 @@ class EventSort extends React.Component {
       });
     this.props.removeItem(group);
   };
+
+  //converts from military time to regular time and adds AM / PM
+  convetTime = str => {
+    let splitTime = str.split(":");
+    if (splitTime[0] < 13) {
+      return str + " am";
+    } else if (splitTime[0] >= 13) {
+      let hour = parseInt(splitTime[0], 10) - 12;
+      return hour + ":" + splitTime[1] + " pm";
+    }
+  };
   render() {
     let dateFormated = moment("" + this.props.event.start_date + "").format(
       "MMM DD, YYYY"
     );
+
+    //send time to function to conert out of military time
+    let startTimeConverted = this.convetTime(this.props.event.start_time);
+    let endTimeConverted = this.convetTime(this.props.event.end_time);
+
     return (
       <div className="card">
         <div className="cardTitle">
@@ -86,7 +102,7 @@ class EventSort extends React.Component {
           <div className="leftCardBody">
             {dateFormated}
             <h6>
-              {this.props.event.start_time}-{this.props.event.end_time}
+              {startTimeConverted} - {endTimeConverted}
             </h6>
             Location:
             <h6>{this.props.event.address}</h6>

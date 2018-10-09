@@ -37,9 +37,13 @@ module.exports = app => {
 
   // testing retrieving info from EVENTS DB
   app.get("/api/events", (req, res) => {
-    db.events.findAll({}).then(results => {
-      res.json(results);
-    });
+    db.events
+      .findAll({
+        order: ["start_date", "start_time"]
+      })
+      .then(results => {
+        res.json(results);
+      });
   });
 
   app.get("/api/attendingEvents/:userId?", (req, res) => {
@@ -47,7 +51,8 @@ module.exports = app => {
       .findAll({
         where: {
           user_id: req.params.userId
-        }
+        },
+        order: ["start_date", "ASC"]
       })
       .then(results => {
         res.json(JSON.stringify(results));

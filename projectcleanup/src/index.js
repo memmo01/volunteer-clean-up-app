@@ -8,6 +8,7 @@ import Signup from "./pages/signUp";
 import Header from "./components/Header";
 import DropDown from "./components/dropDown";
 import Userpage from "./pages/UserMain";
+import Allstats from "./pages/Viewstats";
 // import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route exact path="/createevent" component={CreateEvent} />
         <Route exact path="/eventlist" component={EventList} />
         <Route exact path="/userlogged" component={Userpage} />
+        <Route exact path="/viewstats" component={Allstats} />
       </Switch>
     </div>
   </Router>,

@@ -109,12 +109,12 @@ class Userpage extends React.Component {
     this.updateSessionStorage("joined", y);
   };
 
-  handleShowEvent = k => {
-    if (k == "PP") {
+  handleShowEvent = infoType => {
+    if (infoType === "upcoming") {
       this.setState({
         one: !this.state.one
       });
-    } else if (k == "MMM") {
+    } else if (infoType === "leading") {
       this.setState({
         two: !this.state.two
       });
@@ -194,7 +194,7 @@ class Userpage extends React.Component {
         <hr />
         <section>
           <div id="actionBoxContainer">
-            <a href="#" className="actionBox">
+            <a href="/viewstats" className="actionBox">
               View Stats
             </a>
             <a href="/eventlist" className="actionBox">
@@ -208,7 +208,7 @@ class Userpage extends React.Component {
         <section className="eventList">
           <div
             className="showEventList"
-            onClick={this.handleShowEvent.bind(this, "PP")}
+            onClick={this.handleShowEvent.bind(this, "upcoming")}
           >
             <h5>
               You have {this.state.joinedEvents.length + " "}
@@ -228,7 +228,7 @@ class Userpage extends React.Component {
         <section className="eventList">
           <div
             className="showEventList"
-            onClick={this.handleShowEvent.bind(this, "MMM")}
+            onClick={this.handleShowEvent.bind(this, "leading")}
           >
             <h5>
               You are Leading {this.state.eventsLeading.length + " "} upcoming
@@ -236,11 +236,11 @@ class Userpage extends React.Component {
             </h5>
             {this.state.two ? (
               <div>
-                <i class="fas fa-sort-up" />
+                <i className="fas fa-sort-up" />
                 <div className="eventCards">{individualEvent}</div>
               </div>
             ) : (
-              <i class="fas fa-sort-down" />
+              <i className="fas fa-sort-down" />
             )}
           </div>
         </section>
