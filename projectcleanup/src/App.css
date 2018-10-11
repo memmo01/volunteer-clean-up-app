@@ -276,6 +276,10 @@ form input:focus {
 }
 
 /* //EVENT SORT */
+#eventGroup h3 {
+  text-align: center;
+  padding: 20px;
+}
 .eventList {
   width: 100%;
   display: flex;
@@ -283,10 +287,10 @@ form input:focus {
   justify-content: center;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 30px 0 30px 0;
+  padding: 0px 0 30px 0;
 }
 .card {
-  width: 90%;
+  width: 95%;
   margin: 20px auto;
 
   box-shadow: 1px 1px 3px #888888;
@@ -295,17 +299,22 @@ form input:focus {
   padding: 0 10px 0 10px;
   border-bottom: 1px solid black;
 }
+.cardTitle h4 {
+  padding: 5px;
+}
 .cardBody {
   padding: 10px;
 }
 .leftCardBody {
-  width: 60%;
+  width: 100%;
   float: left;
   padding: 2px;
 }
 .rightCardBody {
-  width: 39%;
-  float: left;
+  /* width: 39%; */
+  float: right;
+  position: absolute;
+  right: 15px;
   padding: 2px;
   text-align: right;
 }
@@ -351,6 +360,15 @@ hr {
   text-align: left;
   background-color: rgba(6, 6, 8, 0.1);
   padding: 15px;
+}
+.joinBtn {
+  width: 80%;
+  margin: 30px auto 0 auto;
+  border: 0.5px solid black;
+  text-align: center;
+  padding: 5px;
+  background-color: rgba(246, 246, 233, 0.4);
+  box-shadow: 1px 1px 1px #888888;
 }
 .showEventList {
   cursor: pointer;

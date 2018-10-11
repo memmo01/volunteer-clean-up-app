@@ -110,11 +110,12 @@ class EventSort extends React.Component {
               {this.props.event.city}, {this.props.event.state}
             </h6>
             {this.props.join === "true" ? (
-              <button
+              <div
                 onClick={this.handleButton.bind(this, this.props.event.id)}
+                class="joinBtn"
               >
-                click to join
-              </button>
+                Join Group
+              </div>
             ) : null}
           </div>
           <div className="rightCardBody">

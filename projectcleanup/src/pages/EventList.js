@@ -89,7 +89,12 @@ class EventList extends React.Component {
         />
       );
     });
-    return <section className="eventList">{ev}</section>;
+    return (
+      <div id="eventGroup">
+        <h3>Select an Event to Join</h3>
+        <section className="eventList">{ev}</section>
+      </div>
+    );
   }
 }
 export default EventList;

@@ -52,7 +52,7 @@ module.exports = app => {
         where: {
           user_id: req.params.userId
         },
-        order: ["start_date", "ASC"]
+        order: ["start_date", "start_time"]
       })
       .then(results => {
         res.json(JSON.stringify(results));
@@ -65,7 +65,8 @@ module.exports = app => {
       .findAll({
         where: {
           id: req.params.groupId
-        }
+        },
+        order: ["start_date", "start_time"]
       })
       .then(results => {
         res.json(results);
@@ -78,7 +79,8 @@ module.exports = app => {
       .findAll({
         where: {
           user_id: req.params.userId
-        }
+        },
+        order: ["start_date", "start_time"]
       })
       .then(results => {
         res.json(JSON.stringify(results));

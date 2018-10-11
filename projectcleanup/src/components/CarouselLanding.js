@@ -1,6 +1,6 @@
 import React from "react";
-import imgs from "../images/commClean.JPG";
-import hh from "../images/clean.JPG";
+import img1 from "../images/commClean.JPG";
+import img2 from "../images/clean.JPG";
 
 class CarouselLanding extends React.Component {
   render() {
@@ -14,14 +14,14 @@ class CarouselLanding extends React.Component {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src={imgs} alt="First slide" />
+              <img className="d-block w-100" src={img1} alt="First slide" />
               <div id="slideOneTitle">Community Cleanup</div>
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={hh} alt="Second slide" />
+              <img className="d-block w-100" src={img2} alt="Second slide" />
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src={hh} alt="Third slide" />
+              <img className="d-block w-100" src={img2} alt="Third slide" />
             </div>
           </div>
           <a
