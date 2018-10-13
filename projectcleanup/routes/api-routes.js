@@ -79,8 +79,7 @@ module.exports = app => {
       .findAll({
         where: {
           user_id: req.params.userId
-        },
-        order: ["start_date", "start_time"]
+        }
       })
       .then(results => {
         res.json(JSON.stringify(results));

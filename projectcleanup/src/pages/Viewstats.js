@@ -17,19 +17,15 @@ class Allstats extends React.Component {
         This page will allow the user to see all of there stats since they have
         been a volunteering member with the site
         <div className="volunteerStats">
-        <section>
-          <ul>
-         <li>number of events volunteered</li>
-         <li>number of lead events</li>
-         <li>hours spend volunteering</li>
-         <li>city volunteered most</li>
-          </ul>
-        </section>
-
-        
+          <section>
+            <ul>
+              <li>number of events volunteered</li>
+              <li>number of lead events</li>
+              <li>hours spend volunteering</li>
+              <li>city volunteered most</li>
+            </ul>
+          </section>
         </div>
-          
-        </section>
       </div>
     );
   }

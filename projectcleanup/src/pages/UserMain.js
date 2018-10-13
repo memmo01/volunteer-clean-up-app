@@ -35,7 +35,6 @@ class Userpage extends React.Component {
     // /find user based on cookie id num
     let self = this;
     let u;
-
     //1.query database with users unique id to get user information.
     // 2. parse data and send to updatePersonInfo function to update state
     fetch(`/api/userfind/${user}`)
@@ -45,10 +44,8 @@ class Userpage extends React.Component {
       .then(data => {
         let arr = [];
         let info = JSON.parse(data);
-
         // returns user id and updates personalInformation state
         let userId = this.updatePersonalInfo(info);
-
         arr.push(this);
         arr.push(userId);
         u = userId;
@@ -57,6 +54,7 @@ class Userpage extends React.Component {
       })
       .then(function(arr) {
         // uses user id to query event table and find events the user has signed up for
+        //query event database and get all results where the user created an event
         fetch(`/api/attendingEvents/${arr[1]}`)
           .then(function(results) {
             return results.json();
@@ -64,12 +62,12 @@ class Userpage extends React.Component {
           .then(data => {
             let eventInfo = JSON.parse(data);
 
-            //sends to function to update event state
+            //sends to function to update event state for LEADING events
             self.updateEventInfo(eventInfo);
           });
       })
       .then(function() {
-        // find events that have the id of the user attached to it
+        // find events that have the id of the user attached to it. This queries the signed_up_events table and looks for a match witht he user id to find groups JOINED.
         fetch(`/api/signedUpEvents/${u}`)
           .then(function(results) {
             return results.json();
@@ -87,7 +85,7 @@ class Userpage extends React.Component {
 
   sortAttendInfo = eventAttend => {
     let self = this;
-    // get the events that match with the user id and then send to eventStateUpdate function to place info into the sate
+    // get the events that match with the user id and then send to eventStateUpdate function to place info into the state
     fetch(`/api/joinedEvents/${eventAttend.group_id}`)
       .then(function(results) {
         return results.json();
@@ -99,6 +97,7 @@ class Userpage extends React.Component {
 
   eventStateUpdate = results => {
     let y = this.state.joinedEvents;
+    //places the index value at the value of the length of data array being passed
     y[y.length] = results;
     // updating state with the group events informaiton
     this.setState({
@@ -171,8 +170,21 @@ class Userpage extends React.Component {
   render() {
     let individualEvent;
     let joinedEvent;
+    let sorter;
+    //this sorts the joined events first by time of the event - could not have the database sort because each other these results are taken individually rather than collectively from database
+    sorter = this.state.joinedEvents.sort(function(a, b) {
+      let d = a.start_time.split(":");
+      let u = b.start_time.split(":");
+      return d[0] - u[0];
+    });
+
+    //this will sort the sorted time array and arrange it by date
+    sorter = sorter.sort(function(a, b) {
+      return a.start_date - b.start_date;
+    });
+
     //loop through leading events and joined events and display them onto the page as separate groups
-    joinedEvent = this.state.joinedEvents.map((obj, index) => {
+    joinedEvent = sorter.map((obj, index) => {
       return <EventSort event={obj} key={index} />;
     });
     individualEvent = this.state.eventsLeading.map((obj, index) => {
@@ -216,14 +228,17 @@ class Userpage extends React.Component {
             </h5>
 
             {this.state.one ? (
-              <div>
-                <i class="fas fa-sort-up" />
-                <div className="eventCards">{joinedEvent}</div>
-              </div>
+              <i className="fas fa-sort-up" />
             ) : (
               <i className="fas fa-sort-down" />
             )}
           </div>
+          {this.state.one ? (
+            <div className="eventListContainer">
+              <div className="eventCards">{joinedEvent}</div>
+            </div>
+          ) : // <i className="fas fa-sort-down" />
+          null}
         </section>
         <section className="eventList">
           <div
@@ -235,14 +250,17 @@ class Userpage extends React.Component {
               event
             </h5>
             {this.state.two ? (
-              <div>
-                <i className="fas fa-sort-up" />
-                <div className="eventCards">{individualEvent}</div>
-              </div>
+              <i className="fas fa-sort-up" />
             ) : (
               <i className="fas fa-sort-down" />
             )}
           </div>
+          {this.state.two ? (
+            <div className="eventListContainer">
+              <div className="eventCards">{individualEvent}</div>
+            </div>
+          ) : // <i className="fas fa-sort-down" />
+          null}
         </section>
       </div>
     );
