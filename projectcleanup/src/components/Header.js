@@ -4,7 +4,8 @@ class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      showIcon: false
+      showIcon: false,
+      homeLink: "#"
     };
   }
 
@@ -13,11 +14,13 @@ class Header extends React.Component {
     let logged = sessionStorage.getItem("logged");
     if (logged === "true") {
       this.setState({
-        showIcon: true
+        showIcon: true,
+        homeLink: "userlogged"
       });
     } else {
       this.setState({
-        showIcon: false
+        showIcon: false,
+        homeLink: "/"
       });
     }
   };
@@ -69,7 +72,7 @@ class Header extends React.Component {
           <nav>
             <ul>
               <li>
-                <a href="#" alt="home">
+                <a href={this.state.homeLink} alt="home">
                   Home
                 </a>
               </li>

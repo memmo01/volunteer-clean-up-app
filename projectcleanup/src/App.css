@@ -161,7 +161,7 @@ article ol {
 }
 .joinBox {
   width: 60%;
-  margin: 20px 0 20px 20%;
+  margin: auto;
   border: 2px solid white;
   border-radius: 10px;
   padding: 20px;
@@ -178,7 +178,7 @@ article ol {
 
 #userAction {
   padding: 20px 0 20px 0;
-  background-image: url("./images/cartoon.png");
+  background-image: url("./images/cartooon.JPG");
   background-position: bottom center;
 }
 #userAction a {
@@ -411,7 +411,23 @@ e.g. @media (min-width: 960px) */
 
 @media (min-width: 480px) {
 }
-@media (min-width: 600px) {
+@media (min-width: 778px) {
+  .carousel-inner {
+    height: 100%;
+  }
+  .bannerImg {
+    width: 50% !important;
+    margin: auto;
+  }
+  #slideOneTitle {
+    width: 70%;
+    margin: auto;
+    position: relative;
+  }
+  #userAction {
+    background-size: cover;
+    background-repeat: no-repeat !important;
+  }
 }
 
 @media (min-width: 960px) {
