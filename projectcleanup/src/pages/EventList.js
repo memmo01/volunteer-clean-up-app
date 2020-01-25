@@ -16,8 +16,7 @@ class EventList extends React.Component {
   componentDidMount() {
     let logged = sessionStorage.getItem("logged");
     if (logged === "false") {
-      alert("you must log in");
-      window.location.href = "/signin";
+      window.location.href = "/eventlist_notlogged";
     } else {
       let self = this;
       if (sessionStorage) {

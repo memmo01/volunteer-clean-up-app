@@ -33,6 +33,7 @@ class EventSort extends React.Component {
     //get user_id from cookie
     //get user id from search with cookie
     //combine user id, group id, and add to group table
+
     let cookie = document.cookie;
     let user = cookie.split("=");
     this.updateSession(groupId);

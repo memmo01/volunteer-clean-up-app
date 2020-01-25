@@ -10,6 +10,9 @@ body {
   padding: 20px 0 0 0;
 }
 
+a:hover {
+  text-decoration: none;
+}
 /*header component styling*/
 
 header nav {
@@ -380,6 +383,9 @@ hr {
   background-color: rgba(246, 246, 233, 0.4);
   box-shadow: 1px 1px 1px #888888;
 }
+.joinBtn:hover {
+  cursor: pointer;
+}
 .showEventList {
   cursor: pointer;
 }
@@ -396,6 +402,30 @@ hr {
 .eventCards {
   width: 100%;
 }
+
+/* not logged page */
+/* #create not logged */
+#eventGroupNoLog,
+#eventListNoLog {
+  text-align: center;
+  padding-top: 100px;
+}
+.createNotLogged,
+.eventListNotLogged {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.createNotLogged > a,
+.eventListNotLogged > a {
+  padding: 7px 20px;
+  background: rgba(235, 237, 236, 0.9);
+  display: block;
+  margin: 10px auto;
+  width: 200px;
+  color: black;
+}
+
 /* .rightCardBody .leftCardBody {
   display: inline-block;
 } */

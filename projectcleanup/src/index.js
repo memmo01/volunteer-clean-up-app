@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import DropDown from "./components/dropDown";
 import Userpage from "./pages/UserMain";
 import Allstats from "./pages/Viewstats";
+import NotLoggedEvent from "./pages/not_logged/CreateEventNotLogged";
+import NotLoggedEventList from "./pages/not_logged/EventListNotLogged";
 // import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
@@ -26,6 +28,12 @@ ReactDOM.render(
         <Route exact path="/eventlist" component={EventList} />
         <Route exact path="/userlogged" component={Userpage} />
         <Route exact path="/viewstats" component={Allstats} />
+        <Route exact path="/create_notlogged" component={NotLoggedEvent} />
+        <Route
+          exact
+          path="/eventlist_notlogged"
+          component={NotLoggedEventList}
+        />
       </Switch>
     </div>
   </Router>,

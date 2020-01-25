@@ -5,7 +5,9 @@ class Header extends React.Component {
     super();
     this.state = {
       showIcon: false,
-      homeLink: "#"
+      homeLink: "#",
+      joinLink: "/eventlist",
+      createLink: "/create_notlogged"
     };
   }
 
@@ -15,7 +17,9 @@ class Header extends React.Component {
     if (logged === "true") {
       this.setState({
         showIcon: true,
-        homeLink: "userlogged"
+        homeLink: "userlogged",
+        joinLink: "eventlist",
+        createLink: "createevent"
       });
     } else {
       this.setState({
@@ -77,12 +81,12 @@ class Header extends React.Component {
                 </a>
               </li>
               <li>
-                <a href="#" alt="create volunteer group">
+                <a href={this.state.createLink} alt="create volunteer group">
                   create a group
                 </a>
               </li>
               <li>
-                <a href="#" alt="join a volunteer group">
+                <a href={this.state.joinLink} alt="join a volunteer group">
                   join a clean up group
                 </a>
               </li>
